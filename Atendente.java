@@ -7,7 +7,7 @@ public class Atendente extends Funcionario {
 	
 	private Scanner s;
 
-	//método construtor
+	//mï¿½todo construtor
 	public Atendente(int ID, String nome) {
 		super(ID, nome);	
 	}
@@ -41,7 +41,7 @@ public class Atendente extends Funcionario {
 	}
 	
 	
-	/*Deve modificar um pedido já finalizado por um cliente
+	/*Deve modificar um pedido jï¿½ finalizado por um cliente
 	 * 
 	 */
 	public boolean alterarPedido(int ID) {
