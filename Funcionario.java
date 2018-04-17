@@ -6,7 +6,7 @@ public class Funcionario {
 	private String nome;
 
 	
-	//método construtor
+	//mï¿½todo construtor
 	public Funcionario(int ID, String nome) {
 		this.ID = ID;
 		this.nome = nome;

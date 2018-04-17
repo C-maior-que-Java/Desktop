@@ -49,7 +49,7 @@ public class Pizza extends Produto {
     	System.out.println(saida);
     }
     
-  //checa se há um ingrediente especifico na pizza
+  //checa se hï¿½ um ingrediente especifico na pizza
   	public boolean temIngrediente(String ingrediente) {
   		for(String i : ingredientes) {
   			if(ingrediente == i)

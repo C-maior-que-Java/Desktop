@@ -4,26 +4,27 @@ import java.util.ArrayList;
 
 public class Cardapio{
 
-    // o cardápio contém uma lista de Produtos
+    // o cardapio contem uma lista de Produtos
     private ArrayList<Produto> produtos;
 
     // construtor
     public Cardapio(Produto... produtos) {
+    	this.produtos = new ArrayList<Produto>();
     	for(Produto prod : produtos) {
     		this.produtos.add(prod);
     	}
     }
 
-    // métodos
+    // metodos
     public void visualizarCardapio() {
 
         for (Produto p : this.produtos) {
-            System.out.printf("%s\n", p);
+            System.out.println(p.getInfo());
         }
     }
 
-    /*	Removi do programa o método "atualizar Cardapio"
-     * 	Pois não fazia o menor sentido, att. Capeletti
+    /*	Removi do programa o metodo "atualizar Cardapio"
+     * 	Pois nao fazia o menor sentido, att. Capeletti
      */
     
     public void adicionarAoCardapio(Produto produto) {
@@ -37,7 +38,7 @@ public class Cardapio{
     	produtos.remove(produto);
     }
     
-    //retorna o produto que tenha ID correspondente ou null se o produto não existir no cardápio
+    //retorna o produto que tenha ID correspondente ou null se o produto nao existir no cardapio
     public Produto getProduto(int ID) {
     	Produto p;
     	

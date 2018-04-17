@@ -28,7 +28,7 @@ public class Pedido {
 		
 		p = cardapio.getProduto(s.nextInt());
 		while(p == null) {
-			System.out.println("ID inválido, digite novamente");
+			System.out.println("ID invï¿½lido, digite novamente");
 			p = cardapio.getProduto(s.nextInt());
 		}
 		
@@ -42,7 +42,7 @@ public class Pedido {
 	}
 	
 	
-	//adiciona alguma observação ao pedido, como por Exemplo: "sem azeitona"
+	//adiciona alguma observaï¿½ï¿½o ao pedido, como por Exemplo: "sem azeitona"
 	public void adicionarNota(String nota) {
 		this.nota = nota;
 	}
@@ -59,7 +59,7 @@ public class Pedido {
 		
 		p = cardapio.getProduto(id);
 		while(p == null) {
-			System.out.println("ID inválido, digite novamente");
+			System.out.println("ID invï¿½lido, digite novamente");
 			p = cardapio.getProduto(s.nextInt());
 		}
 		
