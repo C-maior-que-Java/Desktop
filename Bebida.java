@@ -1,11 +1,13 @@
+package Desktop;
+
 public class Bebida extends Produto {
 
     // atributos
     private String tipo;
 
     // construtor
-    public Bebida(String tipo) {
-
+    public Bebida(String nome, float preco, int ID, String tipo) {
+    	super(nome, preco, ID);
         this.tipo = tipo;
     }
 
