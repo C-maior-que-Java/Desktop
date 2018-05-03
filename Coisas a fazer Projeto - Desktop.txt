@@ -1,0 +1,20 @@
+Falta criar um gerador de nº de pedido,
+Implementar o método para finalizar o pedido
+Alterar o método visualizarPedido, no momento ele imprime no console as infos
+
+Adicionar coisas na classe pizza, no momento ela está muito simples (mais sabores numa unica pizza, etc)
+Alterar o método verIngredientes
+Provavelmente será bom retirar os setters também
+
+Criar um gerador de ID do produto?
+Alterar o método getInfo
+
+Gerador de ID de funcionário?
+
+Alterar o método visualizarCardapio
+
+Falta implementar quase que por completo a classe atendente, precisamos discutir como ela deve operar
+
+
+
+
