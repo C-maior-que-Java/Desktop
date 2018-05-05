@@ -25,8 +25,7 @@ public class Produto {
         return ID;
     }
     
-    
-    //retorna uma string com nome, pre�o e ingredientes do produto
+    //retorna uma string com nome, preco e ingredientes do produto
     public String getInfo() {
         String info;
         info = ID + ": " + nome + ", " + preco + ", ";

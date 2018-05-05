@@ -7,7 +7,7 @@ public class Atendente extends Funcionario {
     
     private Scanner s;
     
-    //m�todo construtor
+    //metodo construtor
     public Atendente(int ID, String nome) {
         super(ID, nome);
     }

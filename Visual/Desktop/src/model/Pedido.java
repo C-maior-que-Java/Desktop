@@ -70,6 +70,7 @@ public class Pedido {
             listaProdutos.remove(p);
             qtd--;
         }
+        
     }
     
     public void finalizarPedido() {
