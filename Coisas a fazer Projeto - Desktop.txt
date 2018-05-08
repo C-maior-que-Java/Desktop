@@ -1,4 +1,3 @@
-Falta criar um gerador de nº de pedido,
 Implementar o método para finalizar o pedido
 Alterar o método visualizarPedido, no momento ele imprime no console as infos
 

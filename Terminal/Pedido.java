@@ -5,16 +5,19 @@ import java.util.Scanner;
 
 public class Pedido {
 	
-	private int numero;
+	private final int numero;
 	private ArrayList<Produto> listaProdutos;
 	private String nota;
 	private Scanner s;
 	
 	public Pedido() {
-		this.numero = 0;	//seria bom criar um gerador de ID
+		this.numero = GeradorNumPedido.getNumPedido();
 		listaProdutos = new ArrayList<Produto>();
 	}
 	
+	public int getNumPedido() {
+		return numero;
+	}
 	
 	//adiciona ao pedido a quantidade do produto especificado
 	public void adicionarProduto(Cardapio cardapio) {
@@ -28,7 +31,7 @@ public class Pedido {
 		
 		p = cardapio.getProduto(s.nextInt());
 		while(p == null) {
-			System.out.println("ID invï¿½lido, digite novamente");
+			System.out.println("ID inválido, digite novamente");
 			p = cardapio.getProduto(s.nextInt());
 		}
 		
@@ -42,7 +45,7 @@ public class Pedido {
 	}
 	
 	
-	//adiciona alguma observaï¿½ï¿½o ao pedido, como por Exemplo: "sem azeitona"
+	//adiciona alguma observacao ao pedido, como por Exemplo: "sem azeitona"
 	public void adicionarNota(String nota) {
 		this.nota = nota;
 	}

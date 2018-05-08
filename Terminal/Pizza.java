@@ -2,38 +2,40 @@ package Desktop;
 public class Pizza extends Produto {
 
     // atributos
-    private int tamanho;
+    public enum Tamanho{
+    	PEQUENO, MEDIO, GRANDE;
+    }
     private String sabor;
     private String[] ingredientes;
 
+    private Tamanho tamanho;
+    
     //construtor
-    public Pizza(String nome, float preco, String[] ingredientes, int ID, int tamanho, String sabor) {
+    public Pizza(String nome, float preco, String[] ingredientes, int ID, String sabor, Tamanho t) {
     	super(nome, preco, ID);
-        this.tamanho = tamanho;
         this.sabor = sabor;
         this.ingredientes = ingredientes;
+        switch (t){
+        	case PEQUENO: tamanho = Tamanho.PEQUENO; break;
+        	case MEDIO  : tamanho = Tamanho.MEDIO; break;
+        	case GRANDE : tamanho = Tamanho.GRANDE; break;
+        }
     }
 
     // getters
-    public int getTamanho() {
+    public Tamanho getTamanho() { return tamanho; }
 
-        return this.tamanho;
-    }
+    public String getSabor() { return this.sabor; }
 
-    public String getSabor() {
-
-        return this.sabor;
-    }
-
+    public void setSabor(String sabor) { this.sabor = sabor; }
+    
     // setters
-    public void setTamanho(int tamanho) {
-
-        this.tamanho = tamanho;
-    }
-
-    public void setSabor(String sabor) {
-        
-        this.sabor = sabor;
+    public void setTamanho(Tamanho t) {
+    	switch(t) {
+    		case PEQUENO: tamanho = Tamanho.PEQUENO; break;
+    		case MEDIO 	: tamanho = Tamanho.MEDIO; break;
+    		case GRANDE : tamanho = Tamanho.GRANDE; break;
+    	}
     }
     
     //exibe todos os ingredientes da pizza
@@ -49,7 +51,7 @@ public class Pizza extends Produto {
     	System.out.println(saida);
     }
     
-  //checa se h� um ingrediente especifico na pizza
+  //checa se ha um ingrediente especifico na pizza
   	public boolean temIngrediente(String ingrediente) {
   		for(String i : ingredientes) {
   			if(ingrediente == i)
