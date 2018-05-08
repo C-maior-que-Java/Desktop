@@ -1,11 +1,11 @@
-package Desktop;
+package model;
 
 import java.util.ArrayList;
 
 public class Cardapio{
 
     // o cardapio contem uma lista de Produtos
-    private ArrayList<Produto> produtos;
+    private final ArrayList<Produto> produtos;
 
     // construtor
     public Cardapio(Produto... produtos) {
@@ -40,12 +40,10 @@ public class Cardapio{
     
     //retorna o produto que tenha ID correspondente ou null se o produto nao existir no cardapio
     public Produto getProduto(int ID) {
-    	Produto p;
     	
-    	for(int i = 0; i < produtos.size(); i++) {
-    		p = produtos.get(i);
-    		if(p.getID() == ID)
-    			return p;
+    	for(Produto i : produtos) {
+    		if(i.getID() == ID)
+    			return i;
     	}
     	return null;
     }

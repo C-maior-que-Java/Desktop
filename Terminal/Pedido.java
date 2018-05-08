@@ -1,4 +1,4 @@
-package Desktop;
+package model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Pedido {
 	
 	private final int numero;
-	private ArrayList<Produto> listaProdutos;
+	private final ArrayList<Produto> listaProdutos;
 	private String nota;
 	private Scanner s;
 	
@@ -23,7 +23,7 @@ public class Pedido {
 	public void adicionarProduto(Cardapio cardapio) {
 		
 		s = new Scanner(System.in);
-		Produto p;
+		Produto p=null;
 		int qtd;
 		
 		cardapio.visualizarCardapio();
@@ -31,7 +31,7 @@ public class Pedido {
 		
 		p = cardapio.getProduto(s.nextInt());
 		while(p == null) {
-			System.out.println("ID inválido, digite novamente");
+			System.out.println("ID invï¿½lido, digite novamente");
 			p = cardapio.getProduto(s.nextInt());
 		}
 		
@@ -62,7 +62,7 @@ public class Pedido {
 		
 		p = cardapio.getProduto(id);
 		while(p == null) {
-			System.out.println("ID invï¿½lido, digite novamente");
+			System.out.println("ID invalido, digite novamente");
 			p = cardapio.getProduto(s.nextInt());
 		}
 		

@@ -1,4 +1,5 @@
-package Desktop;
+package model;
+
 public class Entrega {
 
     // atributos

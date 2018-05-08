@@ -1,10 +1,11 @@
-package Desktop;
+package model;
 
 import java.util.Scanner;
 
 public class Administrador extends Funcionario {
 
-	private Cardapio cardapio;
+        private static final int numIngredientes = 20;
+	private final Cardapio cardapio;
 	private Scanner s;
 	
 	public Administrador(int ID, String nome, Cardapio cardapio) {
@@ -16,7 +17,8 @@ public class Administrador extends Funcionario {
 	//deve adicionar um novo produto ao cardapio
 	public Cardapio adicionarAoCardapio(Cardapio cardapio) {
 		s = new Scanner(System.in);
-		String[] ingredientes = new String[20];
+		String[] ingredientes;
+                ingredientes = new String[numIngredientes];
 		Produto p;
 		
 		System.out.println("Digite 1 para adicionar pizza, 2 para bebida");
@@ -28,13 +30,13 @@ public class Administrador extends Funcionario {
 				ingredientes[i] = s.nextLine();
 			}
 			
-			p = new Pizza(s.nextLine(), s.nextFloat(), ingredientes, s.nextInt(), s.nextInt(), s.nextLine());
+			//p = new Pizza(s.nextLine(), s.nextFloat(), ingredientes, s.nextInt(), s.nextInt(), s.nextLine());
 			cardapio.adicionarAoCardapio(p);
 			
 		break;
 		case 2:
 			
-			p = new Bebida(s.nextLine(), s.nextFloat(), s.nextInt(), s.nextLine());
+			//p = new Bebida(s.nextLine(), s.nextFloat(), s.nextInt(), s.nextLine());
 			cardapio.adicionarAoCardapio(p);
 			
 		break;

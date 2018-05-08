@@ -1,36 +1,34 @@
-package model;
+package Desktop;
 
 public class Produto {
-    
-    private String nome;
-    private float preco;
-    private int ID;
-    
-    
-    public Produto(String nome, float preco, int ID) {
-        this.nome = nome;
-        this.preco = preco;
-        this.ID = ID;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-    
-    public float getPreco() {
-        return preco;
-    }
-    
-    public int getID() {
-        return ID;
-    }
-    
-    //retorna uma string com nome, preco e ingredientes do produto
-    public String getInfo() {
-        String info;
-        info = ID + ": " + nome + ", " + preco + ", ";
+	
+	private float preco;
+	private int ID;
+	
+	
+	public Produto(float preco, int ID) {
+            this.preco = preco;
+            this.ID = ID;
+	}
+	
+	public float getPreco() {
+            return preco;
+	}
         
-        return info;
-    }
-    
+        public void setPreco(float p){
+            preco = p;
+        }
+	
+	public int getID() {
+            return ID;
+	}
+        
+        public void setID(int id){
+            ID = id;
+        }
+        
+        public String getinfo(){
+            return null;
+        }
+	
 }

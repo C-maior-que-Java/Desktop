@@ -1,62 +1,76 @@
 package model;
 
 public class Pizza extends Produto {
-    
+
+    public class Sabor{
+        final String nome;
+        final String[] ingredientes;
+        
+        Sabor(String nome, String[] ingredientes){
+            this.nome = nome;
+            this.ingredientes = ingredientes;
+        }
+    }
     // atributos
-    private int tamanho;
-    private String sabor;
-    private String[] ingredientes;
+    public enum Tamanho{
+    	PEQUENO, MEDIO, GRANDE;
+    }
+
+    private Tamanho tamanho;
+    private Sabor sabor;
     
     //construtor
-    public Pizza(String nome, float preco, String[] ingredientes, int ID, int tamanho, String sabor) {
-        super(nome, preco, ID);
-        this.tamanho = tamanho;
+    public Pizza(float preco, int ID, Sabor sabor, Tamanho t) {
+    	super(preco, ID);
         this.sabor = sabor;
-        this.ingredientes = ingredientes;
+        switch (t){
+        	case PEQUENO: tamanho = Tamanho.PEQUENO; break;
+        	case MEDIO  : tamanho = Tamanho.MEDIO; break;
+        	case GRANDE : tamanho = Tamanho.GRANDE; break;
+        }
     }
-    
+
     // getters
-    public int getTamanho() {
-        
-        return this.tamanho;
-    }
-    
-    public String getSabor() {
-        
-        return this.sabor;
-    }
+    public Tamanho getTamanho() { return tamanho; }
+
+    public Sabor getSabor() { return this.sabor; }
+
+    public void setSabor(Sabor sabor) { this.sabor = sabor; }
     
     // setters
-    public void setTamanho(int tamanho) {
-        
-        this.tamanho = tamanho;
-    }
-    
-    public void setSabor(String sabor) {
-        
-        this.sabor = sabor;
+    public void setTamanho(Tamanho t) {
+    	switch(t) {
+    		case PEQUENO: tamanho = Tamanho.PEQUENO; break;
+    		case MEDIO  : tamanho = Tamanho.MEDIO; break;
+    		case GRANDE : tamanho = Tamanho.GRANDE; break;
+    	}
     }
     
     //exibe todos os ingredientes da pizza
-    public void verIngredientes() {
+    public String verIngredientes() {
         String saida = "";
         
-        for(int i = 0; i < ingredientes.length; i++) {
-            saida = saida + ingredientes[i];
-            if(i != ingredientes.length -1) {
-                saida = saida + ", ";
-            }
-        }
-        System.out.println(saida);
+        if(sabor.ingredientes.length == 0){
+            return null;
+        }    
+    	
+    	for(int i = 0; i < sabor.ingredientes.length; i++) {
+            
+    		saida = saida + sabor.ingredientes[i];
+    		if(i != sabor.ingredientes.length -1) {
+    			saida = saida + ", ";
+    		}
+    	}
+    	return saida;
     }
     
-    //checa se h� um ingrediente especifico na pizza
+    //checa se ha um ingrediente especifico na pizza
     public boolean temIngrediente(String ingrediente) {
-        for(String i : ingredientes) {
+  	for(String i : sabor.ingredientes) {
             if(ingrediente == i)
                 return true;
-        }
+  	}
         return false;
     }
-    
+
 }
