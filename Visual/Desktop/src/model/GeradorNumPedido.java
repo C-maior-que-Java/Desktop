@@ -1,11 +1,11 @@
-package Desktop;
+package model;
 
 public class GeradorNumPedido {
-	
-	private static int num = 0;
-	
-	public static int getNumPedido() {
-		num += 1;
-		return num;
-	}
+    
+    private static int num = 0;
+    
+    public static int getNumPedido() {
+        num += 1;
+        return num;
+    }
 }

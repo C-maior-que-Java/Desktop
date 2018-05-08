@@ -5,6 +5,10 @@
  */
 package visual;
 
+import model.Administrador;
+import model.Atendente;
+import model.Funcionario;
+
 /**
  *
  * @author pedro
@@ -86,7 +90,30 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
+        
+        // antes de fazer o login, aqui fazer a chamada para o servidor verificar se login/senha esta correto
+        String login = loginTextField.getText();
+        String senha = String.valueOf(passwordTextField.getPassword());
+        
+        if(login.isEmpty() || senha.isEmpty()) {
+            DefaultDialog dialog = new DefaultDialog(this, true, "Campos vazios!");
+            dialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            dialog.setVisible(true);
+        } else {
+            
+            //inventando se eh Admin ou Atendente
+            //retorno do servidor devera retornar essa informacao
+            Funcionario funcionario;
+            if(login.equals("pedrinho"))
+                funcionario = new Administrador(1, "Pedro Bastos", null);
+            else
+                funcionario = new Atendente(2, "Sou um atendente");
+            
+            TelaPrincipal telaPrincipal = new TelaPrincipal(funcionario);
+            telaPrincipal.setVisible(true);                                    
+            
+            this.dispose(); // consegui logar -> fecho esta janela pois nao precisa mais
+        }        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     /**

@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package serverlink;
 
 import com.google.gson.Gson;
@@ -10,13 +10,11 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jdk.nashorn.internal.parser.JSONParser;
 import model.Produto;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -36,7 +34,7 @@ public class Teste {
             HttpPost httpPost = new HttpPost("http://localhost:8080/produto");
             
             Gson gson = new Gson();
-            Produto produto = new Produto("Arroz com feijao", 2.99f, 1);
+            Produto produto = new Produto(2.99f, 1); // perguntar pq tirou o nome
             String json = gson.toJson(produto);
             
             StringEntity entity = new StringEntity(json);
