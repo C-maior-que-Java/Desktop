@@ -1,0 +1,24 @@
+->> decidimos por, na release 1, entregar tudo do Desktop sem linkar com servidor ainda
+
+	-> tela para o funcionario logar (Pedro)
+        -> ABAS A CRIAR : cardapio, pedido, produto, entregas, clientes
+        	-> aba cardapio: (Capeletti)
+                	-> retirar item do cardapio
+                        -> adicionar item no cardapio
+                        -> criar/excluir cardapio
+                -> aba pedido: (Joao)
+                        -> fazer pedido (alterar e cancelar) para o cliente
+                        -> na mesma aba, mostrar outra tela para fazer funções da classe Pedido
+                -> aba produto: (Vitor)
+                        -> listagem de produtos existentes
+                        -> criação, alteração e remoção de produtos
+                        -> lembrando que, por enquanto, so podem existir produtos do tipo Pizza e Bebida
+                 -> aba entregas: (Pistola)
+                        -> listagem de entregas a serem efetuadas (depois da finalização de um Pedido)
+                 -> aba clientes (Vitor)
+                        -> cadastrar clientes
+
+Lembrando
+	-> as abas devem conversar entre si -> dados criados/retirados em uma aba devem ser refletidos em outras.
+		-> sexta-feira podemos nos reunião para juntar o que cada um fez.
+	-> layout de cada aba a cargo de cada um.
