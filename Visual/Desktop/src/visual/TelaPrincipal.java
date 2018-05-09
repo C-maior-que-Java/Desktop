@@ -5,8 +5,16 @@
  */
 package visual;
 
+import java.util.ArrayList;
 import javax.swing.JComponent;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import model.Cliente;
+import model.Entrega;
 import model.Funcionario;
+import model.Pedido;
+import model.Produto;
 
 /**
  *
@@ -15,6 +23,14 @@ import model.Funcionario;
 public class TelaPrincipal extends javax.swing.JFrame {
     
     Funcionario funcionarioSessaoAtual;
+    ArrayList<Produto> produtos;
+    ArrayList<Pedido> pedidos;
+    ArrayList<Entrega> entregas;
+    ArrayList<Cliente> clientes;
+    
+    JComponent painelCardapio;
+    JComponent painelPedidos;
+    JComponent painelProdutos;
 
     /**
      * Creates new form TelaAdministrador
@@ -25,13 +41,72 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         this.funcionarioSessaoAtual = funcionario;
         
-        JComponent painelCardapio = new PainelCardapio();
-        JComponent painelPedidos = new PainelPedidos();
-        JComponent painelProdutos = new PainelProdutos();
+        this.painelCardapio = new PainelCardapio();
+        this.painelPedidos = new PainelPedidos();
+        this.painelProdutos = new PainelProdutos();
+        
         this.tabbedPane.addTab("Cardapio", painelCardapio);
         this.tabbedPane.addTab("Pedidos", painelPedidos);
-        this.tabbedPane.addTab("Produtos", painelProdutos);
+        this.tabbedPane.addTab("Produtos", painelProdutos);        
+        this.tabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                
+                JTabbedPane mytabbedPane = (JTabbedPane) e.getSource();
+                switch(mytabbedPane.getSelectedIndex()) {
+                    case 0: break;
+                    case 1: break;
+                    case 2: break;
+                    case 3: break;
+                    case 4: break;
+                    case 5: break;
+                }
+            }
+        });
+        
+        this.produtos = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
+        this.entregas = new ArrayList<>();
+        this.clientes = new ArrayList<>();
     }
+    
+    /*
+            Metodos abaixo para serem chamados pelos paines para atualizar
+        registros gerais para todas as abas poderem conversar entre si
+    */
+    
+    public void adionarProdutoNaLista(Produto produto) {
+        //TODO
+    }
+    
+    public void adionarPedidoNaLista(Pedido pedido) {
+        //TODO
+    }
+    
+    public void adionarEntregaNaLista(Entrega entrega) {
+        //TODO
+    }
+    
+    public void adionarClienteNaLista(Cliente cliente) {
+        //TODO
+    }
+
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public ArrayList<Entrega> getEntregas() {
+        return entregas;
+    }
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
