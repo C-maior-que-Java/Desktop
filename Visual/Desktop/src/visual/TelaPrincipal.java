@@ -31,6 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     JComponent painelCardapio;
     JComponent painelPedidos;
     JComponent painelProdutos;
+    JComponent painelEntregas;
 
     /**
      * Creates new form TelaAdministrador
@@ -44,10 +45,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.painelCardapio = new PainelCardapio();
         this.painelPedidos = new PainelPedidos();
         this.painelProdutos = new PainelProdutos();
+	this.painelEntregas = new PainelEntregas();
         
         this.tabbedPane.addTab("Cardapio", painelCardapio);
         this.tabbedPane.addTab("Pedidos", painelPedidos);
-        this.tabbedPane.addTab("Produtos", painelProdutos);        
+        this.tabbedPane.addTab("Produtos", painelProdutos);
+	this.tabbedPane.addTab("Entregas", painelEntregas);
         this.tabbedPane.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -127,14 +130,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
