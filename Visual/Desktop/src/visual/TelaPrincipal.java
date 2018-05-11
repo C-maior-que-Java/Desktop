@@ -25,12 +25,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         this.funcionarioSessaoAtual = funcionario;
         
+        JComponent painelEntregas = new PainelEntregas();
         JComponent painelCardapio = new PainelCardapio();
         JComponent painelPedidos = new PainelPedidos();
         JComponent painelProdutos = new PainelProdutos();
         this.tabbedPane.addTab("Cardapio", painelCardapio);
         this.tabbedPane.addTab("Pedidos", painelPedidos);
         this.tabbedPane.addTab("Produtos", painelProdutos);
+        this.tabbedPane.addTab("Entregas", painelEntregas);
     }
 
     /**
