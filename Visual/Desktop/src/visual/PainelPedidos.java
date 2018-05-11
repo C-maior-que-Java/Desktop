@@ -11,11 +11,11 @@ package visual;
  */
 public class PainelPedidos extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PainelPedidos
-     */
+    private TelaPrincipal telaPrincipal;
+    
     public PainelPedidos() {
         initComponents();
+        
     }
 
     /**

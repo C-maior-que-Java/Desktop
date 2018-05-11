@@ -11,9 +11,8 @@ package visual;
  */
 public class PainelCardapio extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PainelCardapio
-     */
+    private TelaPrincipal telaPrincipal;
+    
     public PainelCardapio() {
         initComponents();
     }

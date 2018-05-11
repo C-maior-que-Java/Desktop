@@ -19,7 +19,7 @@ public class Administrador extends Funcionario {
         s = new Scanner(System.in);
         String[] ingredientes;
         ingredientes = new String[numIngredientes];
-        Produto p = new Produto(numIngredientes, 1);
+        Produto p = new Produto("coca", numIngredientes, 1);
         
         System.out.println("Digite 1 para adicionar pizza, 2 para bebida");
         

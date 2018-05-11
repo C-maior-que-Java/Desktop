@@ -4,13 +4,15 @@ public class Cliente {
     
     // atributos
     private String nome;
-    private int telefone;
+    private String telefone;
+    private String endereco;
     
     // construtor
-    public Cliente(String nome, int telefone) {
+    public Cliente(String nome, String telefone, String endereco) {
         
         this.nome = nome;
         this.telefone = telefone;
+        this.endereco = endereco;
     }
     
     // getters
@@ -18,7 +20,7 @@ public class Cliente {
         return this.nome;
     }
     
-    public int getTelefone() {
+    public String getTelefone() {
         return this.telefone;
     }
     
@@ -27,8 +29,17 @@ public class Cliente {
         this.nome = nome;
     }
     
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    public String getEndereco() {
+        return this.endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+    
     
 }

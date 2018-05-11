@@ -11,9 +11,8 @@ package visual;
  */
 public class PainelEntregas extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PainelEntregas
-     */
+    private TelaPrincipal telaPrincipal;
+    
     public PainelEntregas() {
         initComponents();
     }

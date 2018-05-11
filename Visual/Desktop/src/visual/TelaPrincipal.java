@@ -44,7 +44,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         this.painelCardapio = new PainelCardapio();
         this.painelPedidos = new PainelPedidos();
-        this.painelProdutos = new PainelProdutos();
+        this.painelProdutos = new PainelProdutos(this);
 	this.painelEntregas = new PainelEntregas();
         
         this.tabbedPane.addTab("Cardapio", painelCardapio);
@@ -78,20 +78,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         registros gerais para todas as abas poderem conversar entre si
     */
     
-    public void adionarProdutoNaLista(Produto produto) {
-        //TODO
+    public void adicionarProdutoNaLista(Produto produto) {
+        this.produtos.add(produto);
     }
     
-    public void adionarPedidoNaLista(Pedido pedido) {
-        //TODO
+    public void adicionarPedidoNaLista(Pedido pedido) {
+        this.pedidos.add(pedido);
     }
     
-    public void adionarEntregaNaLista(Entrega entrega) {
-        //TODO
+    public void adicionarEntregaNaLista(Entrega entrega) {
+        this.entregas.add(entrega);
     }
     
-    public void adionarClienteNaLista(Cliente cliente) {
-        //TODO
+    public void adicionarClienteNaLista(Cliente cliente) {
+        this.clientes.add(cliente);
     }
 
     public ArrayList<Produto> getProdutos() {

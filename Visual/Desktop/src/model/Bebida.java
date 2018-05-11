@@ -4,13 +4,11 @@ public class Bebida extends Produto {
     
     // atributos
     private String tipo;
-    private String nome;
     
     // construtor
     public Bebida(String nome, float preco, int ID, String tipo) {
-        super(preco, ID);
+        super(nome,preco, ID);
         this.tipo = tipo;
-        this.nome = nome;
     }
     
     // getters
