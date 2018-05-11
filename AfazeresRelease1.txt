@@ -2,23 +2,29 @@
 
 	-> tela para o funcionario logar (Pedro)
         -> ABAS A CRIAR : cardapio, pedido, produto, entregas, clientes
-        	-> aba cardapio: (Capeletti)
+        	-> aba cardapio: (Capeletti) - GOING
                 	-> retirar item do cardapio
                         -> adicionar item no cardapio
                         -> criar/excluir cardapio
-                -> aba pedido: (Joao)
+                -> aba pedido: (Joao) - GOING
                         -> fazer pedido (alterar e cancelar) para o cliente
                         -> na mesma aba, mostrar outra tela para fazer funções da classe Pedido
-                -> aba produto: (Vitor)
+                -> aba produto: (Vitor) - OK
                         -> listagem de produtos existentes
                         -> criação, alteração e remoção de produtos
                         -> lembrando que, por enquanto, so podem existir produtos do tipo Pizza e Bebida
-                 -> aba entregas: (Pistola)
+                 -> aba entregas: (Vitor)
                         -> listagem de entregas a serem efetuadas (depois da finalização de um Pedido)
-                 -> aba clientes (Vitor)
+                 -> aba clientes (Vitor) - OK
                         -> cadastrar clientes
 
-Lembrando
-	-> as abas devem conversar entre si -> dados criados/retirados em uma aba devem ser refletidos em outras.
-		-> sexta-feira podemos nos reunião para juntar o que cada um fez.
-	-> layout de cada aba a cargo de cada um.
+
+- Terminar todas as implmentações propostas
+	-> lembrar de implementar mudança de comportamento para se um Funcionario
+	eh um Administrador ou Atendente
+- Atualizar UML
+	- Procurar outra ferramenta para fazer os diagramas
+	- Colocar as novas classes e as mudanças
+	- Na alteração do UML, nem sempre um pedido gera uma entrega
+		mudar relação para agregação e atualizar as cardinalidades
+- Renomear as classes do servidor para fazer o sentido que o Julio quer
