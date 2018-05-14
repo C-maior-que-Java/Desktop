@@ -1,16 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package visual;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 /**
  *
  * @author ra197569
  */
 public class PainelCliente extends javax.swing.JPanel {
-
+    
     private TelaPrincipal telaPrincipal;
     
     /**
@@ -20,7 +22,7 @@ public class PainelCliente extends javax.swing.JPanel {
         initComponents();
         this.telaPrincipal = telaPrincipal;
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +41,7 @@ public class PainelCliente extends javax.swing.JPanel {
         txtEndereco = new javax.swing.JTextField();
         btnAdicionarCliente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTabelaClientes = new javax.swing.JTable();
         btnRemoverCliente = new javax.swing.JButton();
 
         jLabel1.setText("Nome");
@@ -49,8 +51,13 @@ public class PainelCliente extends javax.swing.JPanel {
         jLabel3.setText("Endereço");
 
         btnAdicionarCliente.setText("Adicionar Cliente");
+        btnAdicionarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarClienteActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -66,13 +73,18 @@ public class PainelCliente extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(1).setMinWidth(150);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(300);
+        jScrollPane1.setViewportView(jTabelaClientes);
+        if (jTabelaClientes.getColumnModel().getColumnCount() > 0) {
+            jTabelaClientes.getColumnModel().getColumn(1).setMinWidth(150);
+            jTabelaClientes.getColumnModel().getColumn(1).setMaxWidth(300);
         }
 
         btnRemoverCliente.setText("Remover Cliente");
+        btnRemoverCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,17 +153,39 @@ public class PainelCliente extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
-    public void btnAdicionarClienteActionPerformed(java.awt.event.ActionEvent evt) {
-        
+    
+    private void btnAdicionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarClienteActionPerformed
         String nome = txtNome.getText();
         String telefone = txtTelefone.getText();
         String endereco = txtEndereco.getText();
         
         Cliente novo_cliente = new Cliente(nome,telefone,endereco);
-        
         telaPrincipal.adicionarClienteNaLista(novo_cliente);
+        
+        DefaultTableModel model = (DefaultTableModel) jTabelaClientes.getModel();
+        model.addRow(new Object[]{nome, telefone, endereco});
+        this.limparCampos();
+    }//GEN-LAST:event_btnAdicionarClienteActionPerformed
+    
+    private void btnRemoverClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverClienteActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTabelaClientes.getModel();
+        int selectIndice = jTabelaClientes.getSelectedRow();
+        if(selectIndice < 0){
+            if( model.getRowCount() > 0){
+                JOptionPane.showMessageDialog(null, "Você não selecionou um item da lista !");
+            }else{
+                JOptionPane.showMessageDialog(null, "Não há itens na lista para remover !");
+            }
+        }else{
+            model.removeRow(selectIndice);
+            telaPrincipal.removerClienteDaLista(selectIndice);
+        }
+    }//GEN-LAST:event_btnRemoverClienteActionPerformed
+    
+    private void limparCampos() {
+        this.txtNome.setText("");
+        this.txtEndereco.setText("");
+        this.txtTelefone.setText("");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -162,7 +196,7 @@ public class PainelCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTabelaClientes;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;

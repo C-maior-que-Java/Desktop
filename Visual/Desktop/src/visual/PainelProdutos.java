@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package visual;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -12,10 +12,8 @@ import model.Produto;
  * @author pedro
  */
 public class PainelProdutos extends javax.swing.JPanel {
-
+    
     private TelaPrincipal telaPrincipal; //Referencia da tela principal para a classe de Painel Produtos
-    
-    
     
     public PainelProdutos(TelaPrincipal telaPrincipal) {
         initComponents();
@@ -154,12 +152,10 @@ public class PainelProdutos extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
-
-     
     
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         // TODO add your handling code here:
@@ -172,34 +168,40 @@ public class PainelProdutos extends javax.swing.JPanel {
 //        System.out.println(novo_produto.getNome());
 //        System.out.println(novo_produto.getPreco());
 //        System.out.println(novo_produto.getID());
-       
-         telaPrincipal.adicionarProdutoNaLista(novo_produto);
-         DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
-         
-         model.addRow(new Object[]{id,nome,preco});
-         
-    }//GEN-LAST:event_btnAdicionarActionPerformed
 
+        telaPrincipal.adicionarProdutoNaLista(novo_produto);
+        DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
+        model.addRow(new Object[]{id,nome,preco});
+        
+        this.limparCampos();
+    }//GEN-LAST:event_btnAdicionarActionPerformed
+    
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
         
-            DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
-            int selectIndice = jTableProdutos.getSelectedRow();
-            if(selectIndice < 0){
-                if( model.getRowCount() > 0){
-                    JOptionPane.showMessageDialog(null, "Você não selecionou um item da lista !"); 
-                }else{
-                     JOptionPane.showMessageDialog(null, "Não há itens na lista para remover !");
-                }
+        DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
+        int selectIndice = jTableProdutos.getSelectedRow();
+        if(selectIndice < 0){
+            if( model.getRowCount() > 0){
+                JOptionPane.showMessageDialog(null, "Você não selecionou um item da lista !");
             }else{
-                model.removeRow(selectIndice);
-                telaPrincipal.getProdutos().remove(selectIndice);
+                JOptionPane.showMessageDialog(null, "Não há itens na lista para remover !");
             }
-            
-            /*for(Produto p : telaPrincipal.getProdutos()){
-                System.out.println("Produtos: " + p.getNome());
-            }*/
+        }else{
+            model.removeRow(selectIndice);
+            telaPrincipal.removerProdutoDaLista(selectIndice);
+        }
+        
+        /*for(Produto p : telaPrincipal.getProdutos()){
+        System.out.println("Produtos: " + p.getNome());
+        }*/
     }//GEN-LAST:event_btnRemoverActionPerformed
+    
+    private void limparCampos() {
+        this.txtID.setText("");
+        this.txtNome.setText("");
+        this.txtPreco.setText("");
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
