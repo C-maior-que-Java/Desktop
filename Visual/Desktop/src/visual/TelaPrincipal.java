@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package visual;
 
 import java.util.ArrayList;
@@ -22,17 +22,19 @@ import model.Produto;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
     
-    Funcionario funcionarioSessaoAtual;
-    ArrayList<Produto> produtos;
-    ArrayList<Pedido> pedidos;
-    ArrayList<Entrega> entregas;
-    ArrayList<Cliente> clientes;
+    private Funcionario funcionarioSessaoAtual;
     
-    JComponent painelCardapio;
-    JComponent painelPedidos;
-    JComponent painelProdutos;
-    JComponent painelEntregas;
-
+    private ArrayList<Produto> produtos;
+    private ArrayList<Pedido> pedidos;
+    private ArrayList<Entrega> entregas;
+    private ArrayList<Cliente> clientes;
+    
+    private JComponent painelCardapio;
+    private JComponent painelPedidos;
+    private JComponent painelProdutos;
+    private JComponent painelEntregas;
+    private JComponent painelClientes;
+    
     /**
      * Creates new form TelaAdministrador
      */
@@ -45,12 +47,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.painelCardapio = new PainelCardapio(null, this.funcionarioSessaoAtual, this);
         this.painelPedidos = new PainelPedidos();
         this.painelProdutos = new PainelProdutos(this);
-	this.painelEntregas = new PainelEntregas();
+        this.painelEntregas = new PainelEntregas();
+        this.painelClientes = new PainelCliente(this);
         
         this.tabbedPane.addTab("Cardapio", painelCardapio);
         this.tabbedPane.addTab("Pedidos", painelPedidos);
         this.tabbedPane.addTab("Produtos", painelProdutos);
-	this.tabbedPane.addTab("Entregas", painelEntregas);
+        this.tabbedPane.addTab("Entregas", painelEntregas);
+        this.tabbedPane.addTab("Clientes", painelClientes);
         this.tabbedPane.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
@@ -74,8 +78,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     /*
-            Metodos abaixo para serem chamados pelos paines para atualizar
-        registros gerais para todas as abas poderem conversar entre si
+    Metodos abaixo para serem chamados pelos paines para atualizar
+    registros gerais para todas as abas poderem conversar entre si
     */
     
     public void adicionarProdutoNaLista(Produto produto) {
@@ -93,24 +97,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void adicionarClienteNaLista(Cliente cliente) {
         this.clientes.add(cliente);
     }
-
-    public ArrayList<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public ArrayList<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public ArrayList<Entrega> getEntregas() {
-        return entregas;
-    }
-
-    public ArrayList<Cliente> getClientes() {
-        return clientes;
+    
+    public void removerProdutoDaLista(int indice) {
+        this.produtos.remove(indice);
     }
     
-
+    public void removerPedidoDaLista(int indice) {
+        this.pedidos.remove(indice);
+    }
+    
+    public void removerEntregaDaLista(int indice) {
+        this.entregas.remove(indice);
+    }
+    
+    public void removerClienteDaLista(int indice) {
+        this.clientes.remove(indice);
+    }
+    
+//    public ArrayList<Produto> getProdutos() {
+//        return produtos;
+//    }
+//    
+//    public ArrayList<Pedido> getPedidos() {
+//        return pedidos;
+//    }
+//    
+//    public ArrayList<Entrega> getEntregas() {
+//        return entregas;
+//    }
+//    
+//    public ArrayList<Cliente> getClientes() {
+//        return clientes;
+//    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,7 +162,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
