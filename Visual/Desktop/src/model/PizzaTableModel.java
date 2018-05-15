@@ -19,7 +19,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class PizzaTableModel extends AbstractTableModel{
     
-    private final List<Pizza> pizzas;
+    private final ArrayList<Pizza> pizzas;
     private final String[] colunas;
     
     public PizzaTableModel(){
@@ -30,7 +30,7 @@ public class PizzaTableModel extends AbstractTableModel{
     public PizzaTableModel(ArrayList<Pizza> pizzas){
        this.pizzas = new ArrayList<>();
        colunas = new String[]{"ID", "Nome", "Ingredientes", "Preço Pequena", "Preço Média", "Preço Grande"};
-       addLista(pizzas);
+       addLista(this.pizzas);
     }
     
     

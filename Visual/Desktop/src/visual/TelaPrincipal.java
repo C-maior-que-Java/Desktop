@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import model.Administrador;
 import model.Cliente;
 import model.Entrega;
 import model.Funcionario;
@@ -36,6 +37,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private JComponent painelProdutos;
     private JComponent painelEntregas;
     private JComponent painelClientes;
+    private JComponent painelEditaCardapio;
 
     /**
      * Creates new form TelaAdministrador
@@ -46,17 +48,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         this.funcionarioSessaoAtual = funcionario;
 
-        this.painelCardapio = new PainelCardapio(null, this);
+        this.painelCardapio = new PainelCardapio(new Cardapio(), this);
         this.painelPedidos = new PainelPedidos(this);
         this.painelProdutos = new PainelProdutos(this);
         this.painelEntregas = new PainelEntregas();
         this.painelClientes = new PainelCliente(this);
+        this.painelEditaCardapio = new PainelEditaCardapio(this);
 
         this.tabbedPane.addTab("Cardapio", painelCardapio);
+        //se o funcionario for administrador, habilitamos a tab para editar cardapio
+        if(this.funcionarioSessaoAtual instanceof Administrador)
+            this.tabbedPane.addTab("Editar cardapio", painelEditaCardapio);
         this.tabbedPane.addTab("Pedidos", painelPedidos);
         this.tabbedPane.addTab("Produtos", painelProdutos);
         this.tabbedPane.addTab("Entregas", painelEntregas);
         this.tabbedPane.addTab("Clientes", painelClientes);
+        
+        
+        
         this.tabbedPane.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
