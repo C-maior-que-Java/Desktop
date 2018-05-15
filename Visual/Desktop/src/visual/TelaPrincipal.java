@@ -15,6 +15,7 @@ import model.Entrega;
 import model.Funcionario;
 import model.Pedido;
 import model.Produto;
+import model.Cardapio;
 
 /**
  *
@@ -27,6 +28,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     ArrayList<Pedido> pedidos;
     ArrayList<Entrega> entregas;
     ArrayList<Cliente> clientes;
+    Cardapio cardapio;
     
     JComponent painelCardapio;
     JComponent painelPedidos;
@@ -43,7 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.funcionarioSessaoAtual = funcionario;
         
         this.painelCardapio = new PainelCardapio();
-        this.painelPedidos = new PainelPedidos();
+        this.painelPedidos = new PainelPedidos(this);
         this.painelProdutos = new PainelProdutos();
 	this.painelEntregas = new PainelEntregas();
         
@@ -68,9 +70,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         
         this.produtos = new ArrayList<>();
-        this.pedidos = new ArrayList<>();
+        this.pedidos  = new ArrayList<>();
         this.entregas = new ArrayList<>();
         this.clientes = new ArrayList<>();
+        this.cardapio = new Cardapio(new Produto((float) 33.3, 1), new Produto((float) 66.6, 2), new Produto((float) 99.9, 3));
+    
+    
     }
     
     /*
@@ -82,8 +87,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //TODO
     }
     
-    public void adionarPedidoNaLista(Pedido pedido) {
-        //TODO
+    public void adicionarPedidoNaLista(Pedido pedido) {
+        //System.out.println("dsdsdsd");
+        this.pedidos.add(pedido);
     }
     
     public void adionarEntregaNaLista(Entrega entrega) {
@@ -108,6 +114,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public ArrayList<Cliente> getClientes() {
         return clientes;
+    }
+    
+    public Cardapio getCardapio() {
+    
+        return cardapio;
     }
     
 
