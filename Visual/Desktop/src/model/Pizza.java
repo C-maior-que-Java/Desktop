@@ -3,8 +3,8 @@ package model;
 public class Pizza extends Produto {
     
     public class Sabor{
-        final String nome;
-        final String[] ingredientes;
+        String nome;
+        String[] ingredientes;
         
         Sabor(String nome, String[] ingredientes){
             this.nome = nome;
@@ -15,6 +15,8 @@ public class Pizza extends Produto {
     public enum Tamanho{
         PEQUENO, MEDIO, GRANDE;
     }
+    
+    //implementar algo pra obter precos diferentes
     
     private Tamanho tamanho;
     private Sabor sabor;
@@ -44,6 +46,19 @@ public class Pizza extends Produto {
             case MEDIO  : tamanho = Tamanho.MEDIO; break;
             case GRANDE : tamanho = Tamanho.GRANDE; break;
         }
+    }
+    
+    public void setIngredientes(String[] x){
+        sabor.ingredientes = x;
+    }
+    
+    public String[] getIngredientes(){
+        return sabor.ingredientes;
+    }
+    
+    @Override
+    public String getNome(){
+        return sabor.nome;
     }
     
     //exibe todos os ingredientes da pizza

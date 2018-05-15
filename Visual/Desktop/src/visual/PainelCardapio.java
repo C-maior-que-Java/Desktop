@@ -5,21 +5,32 @@
  */
 package visual;
 
+import java.util.ArrayList;
 import model.Cardapio;
-import model.Funcionario;
+import model.Pizza;
+import model.PizzaTableModel;
+import model.Produto;
 
 public class PainelCardapio extends javax.swing.JPanel {
 
     private Cardapio cardapio;
-    private Funcionario funcionario;
-
     private TelaPrincipal telaPrincipal;
+    private PizzaTableModel modelo;
+    private ArrayList<Pizza> pizzas;
 
-    public PainelCardapio(Cardapio cardapio, Funcionario funcionario, TelaPrincipal telaPrincipal){
+    public PainelCardapio(Cardapio cardapio, TelaPrincipal telaPrincipal){
     	initComponents();
         this.cardapio = cardapio;
-        this.funcionario = funcionario;
 	this.telaPrincipal = telaPrincipal;
+        
+        for(Produto prod : cardapio.getProdutos()){
+           if(prod instanceof Pizza){
+               pizzas.add(((Pizza) prod));
+           }
+        }
+        
+        modelo = new PizzaTableModel(pizzas);
+        table_pizza.setModel(modelo);   
     }
 
     @SuppressWarnings("unchecked")
@@ -27,19 +38,19 @@ public class PainelCardapio extends javax.swing.JPanel {
     private void initComponents() {
 
         jSplitPane1 = new javax.swing.JSplitPane();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panel_Cardapio = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_pizza = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        table_bebida = new javax.swing.JTable();
 
-        jTabbedPane1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panel_Cardapio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTable1.setBackground(new java.awt.Color(0, 255, 255));
-        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_pizza.setBackground(new java.awt.Color(0, 255, 255));
+        table_pizza.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        table_pizza.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -51,7 +62,7 @@ public class PainelCardapio extends javax.swing.JPanel {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -62,33 +73,34 @@ public class PainelCardapio extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(120);
+        table_pizza.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(table_pizza);
+        if (table_pizza.getColumnModel().getColumnCount() > 0) {
+            table_pizza.getColumnModel().getColumn(0).setPreferredWidth(20);
+            table_pizza.getColumnModel().getColumn(1).setPreferredWidth(120);
+            table_pizza.getColumnModel().getColumn(2).setPreferredWidth(220);
+            table_pizza.getColumnModel().getColumn(3).setPreferredWidth(100);
+            table_pizza.getColumnModel().getColumn(4).setPreferredWidth(80);
+            table_pizza.getColumnModel().getColumn(5).setPreferredWidth(90);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Pizza", jPanel1);
+        panel_Cardapio.addTab("Pizza", jPanel1);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        table_bebida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -96,15 +108,27 @@ public class PainelCardapio extends javax.swing.JPanel {
                 "ID", "Nome", "Preço"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(table_bebida);
+        if (table_bebida.getColumnModel().getColumnCount() > 0) {
+            table_bebida.getColumnModel().getColumn(0).setPreferredWidth(10);
+            table_bebida.getColumnModel().getColumn(1).setPreferredWidth(120);
+            table_bebida.getColumnModel().getColumn(2).setPreferredWidth(20);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -112,7 +136,7 @@ public class PainelCardapio extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -123,23 +147,17 @@ public class PainelCardapio extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Bebida", jPanel2);
+        panel_Cardapio.addTab("Bebida", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(panel_Cardapio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(panel_Cardapio)
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -150,8 +168,8 @@ public class PainelCardapio extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTabbedPane panel_Cardapio;
+    private javax.swing.JTable table_bebida;
+    private javax.swing.JTable table_pizza;
     // End of variables declaration//GEN-END:variables
 }
