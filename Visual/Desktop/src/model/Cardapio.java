@@ -38,6 +38,11 @@ public class Cardapio{
         produtos.remove(produto);
     }
     
+    public ArrayList<Produto> getProdutos() {
+    
+        return this.produtos;
+    }
+    
     //retorna o produto que tenha ID correspondente ou null se o produto nao existir no cardapio
     public Produto getProduto(int ID) {
         

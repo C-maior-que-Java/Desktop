@@ -15,41 +15,43 @@ import model.Entrega;
 import model.Funcionario;
 import model.Pedido;
 import model.Produto;
+import model.Cardapio;
 
 /**
  *
  * @author pedro
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    
+
     private Funcionario funcionarioSessaoAtual;
-    
+
     private ArrayList<Produto> produtos;
     private ArrayList<Pedido> pedidos;
     private ArrayList<Entrega> entregas;
     private ArrayList<Cliente> clientes;
-    
+    private Cardapio cardapio;
+
     private JComponent painelCardapio;
     private JComponent painelPedidos;
     private JComponent painelProdutos;
     private JComponent painelEntregas;
     private JComponent painelClientes;
-    
+
     /**
      * Creates new form TelaAdministrador
      */
     public TelaPrincipal(Funcionario funcionario) {
-        
+
         initComponents();
-        
+
         this.funcionarioSessaoAtual = funcionario;
-        
+
         this.painelCardapio = new PainelCardapio(null, this.funcionarioSessaoAtual, this);
-        this.painelPedidos = new PainelPedidos();
+        this.painelPedidos = new PainelPedidos(this);
         this.painelProdutos = new PainelProdutos(this);
         this.painelEntregas = new PainelEntregas();
         this.painelClientes = new PainelCliente(this);
-        
+
         this.tabbedPane.addTab("Cardapio", painelCardapio);
         this.tabbedPane.addTab("Pedidos", painelPedidos);
         this.tabbedPane.addTab("Produtos", painelProdutos);
@@ -58,7 +60,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.tabbedPane.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                
+
                 JTabbedPane mytabbedPane = (JTabbedPane) e.getSource();
                 switch(mytabbedPane.getSelectedIndex()) {
                     case 0: break;
@@ -70,67 +72,75 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         this.produtos = new ArrayList<>();
-        this.pedidos = new ArrayList<>();
+        this.pedidos  = new ArrayList<>();
         this.entregas = new ArrayList<>();
         this.clientes = new ArrayList<>();
+        this.cardapio = new Cardapio(new Produto("Pizza" ,(float) 33.3, 1), new Produto("coca", (float) 66.6, 2), new Produto("coxinha", (float) 99.9, 3));
+
+
     }
-    
+
     /*
     Metodos abaixo para serem chamados pelos paines para atualizar
     registros gerais para todas as abas poderem conversar entre si
     */
-    
+
     public void adicionarProdutoNaLista(Produto produto) {
         this.produtos.add(produto);
     }
-    
+
     public void adicionarPedidoNaLista(Pedido pedido) {
+        //System.out.println("dsdsdsd");
         this.pedidos.add(pedido);
     }
-    
+
     public void adicionarEntregaNaLista(Entrega entrega) {
         this.entregas.add(entrega);
     }
-    
+
     public void adicionarClienteNaLista(Cliente cliente) {
         this.clientes.add(cliente);
     }
-    
+
     public void removerProdutoDaLista(int indice) {
         this.produtos.remove(indice);
     }
-    
+
     public void removerPedidoDaLista(int indice) {
         this.pedidos.remove(indice);
     }
-    
+
     public void removerEntregaDaLista(int indice) {
         this.entregas.remove(indice);
     }
-    
+
     public void removerClienteDaLista(int indice) {
         this.clientes.remove(indice);
     }
     
+    public Cardapio getCardapio() {
+        return this.cardapio;
+    }
+
 //    public ArrayList<Produto> getProdutos() {
 //        return produtos;
 //    }
-//    
+//
 //    public ArrayList<Pedido> getPedidos() {
 //        return pedidos;
 //    }
-//    
+//
 //    public ArrayList<Entrega> getEntregas() {
 //        return entregas;
 //    }
-//    
+//
 //    public ArrayList<Cliente> getClientes() {
 //        return clientes;
 //    }
-    
-    
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,7 +172,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables

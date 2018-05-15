@@ -5,18 +5,46 @@
  */
 package visual;
 
+import javax.swing.table.DefaultTableModel;
+import model.Pedido;
+import java.util.ArrayList;
+
+
 /**
  *
  * @author pedro
  */
 public class PainelPedidos extends javax.swing.JPanel {
 
-    private TelaPrincipal telaPrincipal;
-    
-    public PainelPedidos() {
+    TelaPrincipal telaPrincipal;
+    DefaultTableModel pedidoTableModel;
+    ArrayList<Pedido> pedidos;
+
+    /**
+     * Creates new form PainelPedidos
+     */
+    public PainelPedidos(TelaPrincipal telaPrincipal) {
         initComponents();
-        
+
+        this.telaPrincipal = telaPrincipal;
+        pedidoTableModel = (DefaultTableModel) jTable1.getModel();
+
+
+        //Pedido pedido1 = new Pedido();
+       // telaPrincipal.adicionarPedidoNaLista(pedido1);
+
+        //this.pedidos = telaPrincipal.getPedidos();
+
+
+
+
+//        for(Pedido pedido : telaPrincipal.getPedidos()) {
+//
+//            adicionarLinhaTabela(pedido);
+//        }
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,20 +63,27 @@ public class PainelPedidos extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Pedido", "Preço"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Novo Pedido");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Procurar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -77,6 +112,36 @@ public class PainelPedidos extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FazerPedido telaFazerPedido = new FazerPedido(this.telaPrincipal);
+        telaFazerPedido.setVisible(true);
+
+        //telaPrincipal.adionarPedidoNaLista(null);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+//        Pedido pedido1 = new Pedido();
+//        telaPrincipal.adicionarPedidoNaLista(pedido1);
+//
+//        this.pedidos = telaPrincipal.getPedidos();
+//
+//
+//
+//
+//        for(Pedido pedido : telaPrincipal.getPedidos()) {
+//
+//            adicionarLinhaTabela(pedido);
+//
+//  }
+        }//GEN-LAST:event_jButton2ActionPerformed
+
+
+    private void adicionarLinhaTabela(Pedido pedido) {
+
+        pedidoTableModel.addRow(new Object[]{String.valueOf(pedido.getNumPedido())});
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
