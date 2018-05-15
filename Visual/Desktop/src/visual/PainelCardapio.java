@@ -17,6 +17,7 @@ public class PainelCardapio extends javax.swing.JPanel {
     private TelaPrincipal telaPrincipal;
     private PizzaTableModel modelo;
     private ArrayList<Pizza> pizzas;
+    
 
     public PainelCardapio(Cardapio cardapio, TelaPrincipal telaPrincipal){
     	initComponents();
@@ -30,7 +31,12 @@ public class PainelCardapio extends javax.swing.JPanel {
         }
         
         modelo = new PizzaTableModel(pizzas);
-        table_pizza.setModel(modelo);   
+        table_pizza.setModel(modelo);
+    }
+    
+    public void refresh() {
+        System.out.println("chamou uasdyagsuyagsd");
+        modelo.fireTableDataChanged();
     }
 
     @SuppressWarnings("unchecked")

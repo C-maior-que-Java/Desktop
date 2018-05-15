@@ -9,7 +9,7 @@ public class Cardapio{
     
     // construtor
     public Cardapio(Produto... produtos) {
-        this.produtos = new ArrayList<Produto>();
+        this.produtos = new ArrayList<>();
         for(Produto prod : produtos) {
             this.produtos.add(prod);
         }

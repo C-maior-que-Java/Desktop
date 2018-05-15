@@ -6,7 +6,7 @@ public class Pizza extends Produto {
         String nome;
         String[] ingredientes;
         
-        Sabor(String nome, String[] ingredientes){
+        public Sabor(String nome, String[] ingredientes){
             this.nome = nome;
             this.ingredientes = ingredientes;
         }
@@ -22,7 +22,7 @@ public class Pizza extends Produto {
     private Sabor sabor;
     
     //construtor
-    public Pizza(String nome , float preco, int ID, Sabor sabor, Tamanho t) {
+    public Pizza(String nome , float preco, int ID, Tamanho t) {
         super(nome, preco, ID);
         this.sabor = sabor;
         switch (t){
