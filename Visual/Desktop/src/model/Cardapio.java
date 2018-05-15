@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Cardapio{
     
     // o cardapio contem uma lista de Produtos
-    private final ArrayList<Produto> produtos;
+    private ArrayList<Produto> produtos;
     
     // construtor
     public Cardapio(Produto... produtos) {
@@ -39,7 +39,6 @@ public class Cardapio{
     }
     
     public ArrayList<Produto> getProdutos() {
-    
         return this.produtos;
     }
     
@@ -52,9 +51,4 @@ public class Cardapio{
         }
         return null;
     }
-    
-    public ArrayList<Produto> getProdutos(){
-        return produtos;
-    }
-    
 }

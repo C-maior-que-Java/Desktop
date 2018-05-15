@@ -46,7 +46,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         this.funcionarioSessaoAtual = funcionario;
 
-        this.painelCardapio = new PainelCardapio(null, this.funcionarioSessaoAtual, this);
+        this.painelCardapio = new PainelCardapio(null, this);
         this.painelPedidos = new PainelPedidos(this);
         this.painelProdutos = new PainelProdutos(this);
         this.painelEntregas = new PainelEntregas();
