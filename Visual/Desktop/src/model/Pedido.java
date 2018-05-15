@@ -1,47 +1,55 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Pedido {
     
     private final int numero;
     private final ArrayList<Produto> listaProdutos;
     private String nota;
-    private Scanner s;
+    private Cliente cliente;
     
-    public Pedido() {
+    public Pedido() {//Cliente cliente, Produto... produtos) {
         this.numero = GeradorNumPedido.getNumPedido();
-        listaProdutos = new ArrayList<Produto>();
+        this.listaProdutos = new ArrayList<Produto>();
+//        
+//        for(Produto prod : produtos) {
+//            this.listaProdutos.add(prod);
+//        }
     }
     
     public int getNumPedido() {
         return numero;
     }
     
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+    
+    public ArrayList<Produto> getProdutos() {
+        return this.listaProdutos;
+    }
+    
+    public float getValorPedido() {
+    
+        float valor = 0;
+        
+        
+        if(listaProdutos.size() > 0) {
+        
+            for(Produto produto : listaProdutos) {
+                valor += produto.getPreco();
+            }
+        }
+        
+        return valor;
+    }
+    
     //adiciona ao pedido a quantidade do produto especificado
-    public void adicionarProduto(Cardapio cardapio) {
+    public void adicionarProduto(Produto produto) {
         
-        s = new Scanner(System.in);
-        Produto p=null;
-        int qtd;
-        
-        cardapio.visualizarCardapio();
-        System.out.println("Digite o ID do produto desejado");
-        
-        p = cardapio.getProduto(s.nextInt());
-        while(p == null) {
-            System.out.println("ID inv�lido, digite novamente");
-            p = cardapio.getProduto(s.nextInt());
-        }
-        
-        System.out.println("Digite a quantidade desejada");
-        qtd = s.nextInt();
-        
-        while(qtd > 0) {
-            listaProdutos.add(p);
-            qtd--;
-        }
+        this.listaProdutos.add(produto);
+
     }
     
     
@@ -51,28 +59,10 @@ public class Pedido {
     }
     
     //remove o(s) produto(s) do pedido
-    public void removerProduto(Cardapio cardapio) {
-        s = new Scanner(System.in);
-        int id, qtd;
-        Produto p;
-        
-        cardapio.visualizarCardapio();
-        System.out.println("Digite o ID do produto a ser deletado");
-        id = s.nextInt();
-        
-        p = cardapio.getProduto(id);
-        while(p == null) {
-            System.out.println("ID invalido, digite novamente");
-            p = cardapio.getProduto(s.nextInt());
-        }
-        
-        System.out.println("Digite a quantidade e remover do pedido");
-        qtd = s.nextInt();
-        
-        while(qtd > 0) {
-            listaProdutos.remove(p);
-            qtd--;
-        }
+    public void removerProduto(Produto produto) {
+       
+      
+        this.listaProdutos.remove(produto);
         
     }
     
@@ -81,15 +71,4 @@ public class Pedido {
         //atendente deve ter acesso a esse arrayList
     }
     
-    
-    //mostra o pedido no console, tem que melhorar o funcionamento disso ainda
-    public void visualizarPedido() {
-        String saida = "";
-        for(Produto i : listaProdutos) {
-            saida = saida + ", " + i.getinfo();
-        }
-        saida = saida + '\n' + "nota: " + nota;
-        
-        System.out.println(saida);
-    }
 }

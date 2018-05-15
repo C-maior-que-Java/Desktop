@@ -8,6 +8,7 @@ package visual;
 import javax.swing.table.DefaultTableModel;
 import model.Pedido;
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 
 /**
@@ -16,9 +17,10 @@ import java.util.ArrayList;
  */
 public class PainelPedidos extends javax.swing.JPanel {
 
-    TelaPrincipal telaPrincipal;
-    DefaultTableModel pedidoTableModel;
-    ArrayList<Pedido> pedidos;
+    private TelaPrincipal telaPrincipal;
+    private DefaultTableModel pedidoTableModel;
+    private ArrayList<Pedido> pedidos;
+    private static final DecimalFormat df = new DecimalFormat("R$ #,##0.00");
 
     /**
      * Creates new form PainelPedidos
@@ -121,25 +123,27 @@ public class PainelPedidos extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-//        Pedido pedido1 = new Pedido();
-//        telaPrincipal.adicionarPedidoNaLista(pedido1);
-//
-//        this.pedidos = telaPrincipal.getPedidos();
-//
-//
-//
-//
-//        for(Pedido pedido : telaPrincipal.getPedidos()) {
-//
-//            adicionarLinhaTabela(pedido);
-//
-//  }
+
+        this.pedidos = telaPrincipal.getPedidos();
+
+        for(int i = 0; i < pedidoTableModel.getRowCount(); i++) {
+        
+            pedidoTableModel.removeRow(i);
+        }
+        
+        for(Pedido pedido : pedidos) {
+
+            adicionarLinhaTabela(pedido);
+
+  
+       
+        }
         }//GEN-LAST:event_jButton2ActionPerformed
 
 
     private void adicionarLinhaTabela(Pedido pedido) {
 
-        pedidoTableModel.addRow(new Object[]{String.valueOf(pedido.getNumPedido())});
+        pedidoTableModel.addRow(new Object[]{String.valueOf(pedido.getNumPedido()), df.format(pedido.getValorPedido())});
 
     }
 

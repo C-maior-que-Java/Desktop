@@ -101,7 +101,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void adicionarPedidoNaLista(Pedido pedido) {
-        //System.out.println("dsdsdsd");
         this.pedidos.add(pedido);
     }
 
@@ -137,9 +136,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //        return produtos;
 //    }
 //
-//    public ArrayList<Pedido> getPedidos() {
-//        return pedidos;
-//    }
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
 //
 //    public ArrayList<Entrega> getEntregas() {
 //        return entregas;
