@@ -25,26 +25,26 @@ public class PainelPedidos extends javax.swing.JPanel {
      */
     public PainelPedidos(TelaPrincipal telaPrincipal) {
         initComponents();
-        
+
         this.telaPrincipal = telaPrincipal;
         pedidoTableModel = (DefaultTableModel) jTable1.getModel();
 
-        
+
         //Pedido pedido1 = new Pedido();
        // telaPrincipal.adicionarPedidoNaLista(pedido1);
-        
+
         //this.pedidos = telaPrincipal.getPedidos();
-        
-        
-        
-        
+
+
+
+
 //        for(Pedido pedido : telaPrincipal.getPedidos()) {
-//        
+//
 //            adicionarLinhaTabela(pedido);
 //        }
     }
-    
-    
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,7 +115,7 @@ public class PainelPedidos extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FazerPedido telaFazerPedido = new FazerPedido(this.telaPrincipal);
         telaFazerPedido.setVisible(true);
-      
+
         //telaPrincipal.adionarPedidoNaLista(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -123,24 +123,24 @@ public class PainelPedidos extends javax.swing.JPanel {
 
 //        Pedido pedido1 = new Pedido();
 //        telaPrincipal.adicionarPedidoNaLista(pedido1);
-//        
+//
 //        this.pedidos = telaPrincipal.getPedidos();
-//        
-//        
-//        
-//        
+//
+//
+//
+//
 //        for(Pedido pedido : telaPrincipal.getPedidos()) {
-//        
+//
 //            adicionarLinhaTabela(pedido);
-//        
+//
 //  }
         }//GEN-LAST:event_jButton2ActionPerformed
 
-    
+
     private void adicionarLinhaTabela(Pedido pedido) {
-  
+
         pedidoTableModel.addRow(new Object[]{String.valueOf(pedido.getNumPedido())});
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

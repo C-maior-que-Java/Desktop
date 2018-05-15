@@ -34,7 +34,7 @@ public class Teste {
             HttpPost httpPost = new HttpPost("http://localhost:8080/produto");
             
             Gson gson = new Gson();
-            Produto produto = new Produto(2.99f, 1); // perguntar pq tirou o nome
+            Produto produto = new Produto("Arroz com feijao", 2.99f, 1); // perguntar pq tirou o nome
             String json = gson.toJson(produto);
             
             StringEntity entity = new StringEntity(json);

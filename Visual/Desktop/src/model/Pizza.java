@@ -20,8 +20,8 @@ public class Pizza extends Produto {
     private Sabor sabor;
     
     //construtor
-    public Pizza(float preco, int ID, Sabor sabor, Tamanho t) {
-        super(preco, ID);
+    public Pizza(String nome , float preco, int ID, Sabor sabor, Tamanho t) {
+        super(nome, preco, ID);
         this.sabor = sabor;
         switch (t){
             case PEQUENO: tamanho = Tamanho.PEQUENO; break;
