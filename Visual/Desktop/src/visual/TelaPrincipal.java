@@ -139,9 +139,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         return pedidos;
     }
 //
-//    public ArrayList<Entrega> getEntregas() {
-//        return entregas;
-//    }
+    public ArrayList<Entrega> getEntregas() {
+       return entregas;
+    }
 //
 //    public ArrayList<Cliente> getClientes() {
 //        return clientes;

@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Entrega;
+import visual.TelaPrincipal;
 
 /**
  *
@@ -12,9 +16,23 @@ package visual;
 public class PainelEntregas extends javax.swing.JPanel {
 
     private TelaPrincipal telaPrincipal;
+    private DefaultTableModel entregaTableModel;
     
-    public PainelEntregas() {
+    
+    public PainelEntregas(TelaPrincipal telaPrincipal) {
         initComponents();
+        this.telaPrincipal = telaPrincipal;
+        
+        listarEntregas();
+    }
+    
+    
+    public void listarEntregas() {
+        
+        for (Entrega entrega : telaPrincipal.getEntregas()) {
+            
+            telaPrincipal.adicionarEntregaNaLista(entrega);
+        }
     }
 
     /**
@@ -29,10 +47,10 @@ public class PainelEntregas extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableEntregas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableEntregas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -55,7 +73,7 @@ public class PainelEntregas extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTableEntregas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,12 +120,29 @@ public class PainelEntregas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTableEntregas.getModel();
+        int selectIndice = jTableEntregas.getSelectedRow();
+        
+        if(selectIndice < 0){
+            if( model.getRowCount() > 0){
+                JOptionPane.showMessageDialog(null, "Você não selecionou um item da lista !");
+            }else{
+                JOptionPane.showMessageDialog(null, "Não há itens na lista para remover !");
+            }
+        }else{
+            model.removeRow(selectIndice);
+            telaPrincipal.removerEntregaDaLista(selectIndice);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableEntregas;
     // End of variables declaration//GEN-END:variables
 }
