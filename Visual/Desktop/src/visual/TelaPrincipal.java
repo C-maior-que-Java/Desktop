@@ -57,7 +57,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.painelCardapio = new PainelCardapio(this.cardapio, this);
         this.painelPedidos = new PainelPedidos(this);
         this.painelProdutos = new PainelProdutos(this);
-        this.painelEntregas = new PainelEntregas();
+        this.painelEntregas = new PainelEntregas(this);
         this.painelClientes = new PainelCliente(this);
         this.painelEditaCardapio = new PainelEditaCardapio(this);
 
@@ -70,15 +70,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.tabbedPane.addTab("Entregas", painelEntregas);
         this.tabbedPane.addTab("Clientes", painelClientes);
         
-        
-        
         this.tabbedPane.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
 
                 JTabbedPane mytabbedPane = (JTabbedPane) e.getSource();
                 switch(mytabbedPane.getSelectedIndex()) {
-                    case 0: ((PainelCardapio) painelCardapio).refresh(); break;
+                    case 0: ((PainelCardapio) painelCardapio).refresh(cardapio); break;
                     case 1: break;
                     case 2: break;
                     case 3: break;

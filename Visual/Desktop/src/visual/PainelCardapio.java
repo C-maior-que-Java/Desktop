@@ -6,6 +6,7 @@
 package visual;
 
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import model.Cardapio;
 import model.Pizza;
 import model.PizzaTableModel;
@@ -18,11 +19,11 @@ public class PainelCardapio extends javax.swing.JPanel {
     private PizzaTableModel modelo;
     private ArrayList<Pizza> pizzas;
     
-
     public PainelCardapio(Cardapio cardapio, TelaPrincipal telaPrincipal){
     	initComponents();
         this.cardapio = cardapio;
 	this.telaPrincipal = telaPrincipal;
+        this.pizzas = new ArrayList<>();
         
         for(Produto prod : cardapio.getProdutos()){
            if(prod instanceof Pizza){
@@ -31,12 +32,21 @@ public class PainelCardapio extends javax.swing.JPanel {
         }
         
         modelo = new PizzaTableModel(pizzas);
-        table_pizza.setModel(modelo);
+        //table_pizza.setModel(modelo);
     }
     
-    public void refresh() {
+    public void refresh(Cardapio cardapio) {
         System.out.println("chamou uasdyagsuyagsd");
-        modelo.fireTableDataChanged();
+        
+        for(Produto prod : cardapio.getProdutos()){
+           if(prod instanceof Pizza){
+               System.out.println(((Pizza) prod).getNome());               
+               pizzas.add(((Pizza) prod));
+           }
+        }
+        
+        modelo = new PizzaTableModel(pizzas);
+        table_pizza.setModel(modelo);
     }
 
     @SuppressWarnings("unchecked")

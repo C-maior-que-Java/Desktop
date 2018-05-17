@@ -191,18 +191,24 @@ public class PainelProdutos extends javax.swing.JPanel {
         int id = Integer.valueOf(txtID.getText());
         boolean bebida = this.rdBtnBebida.isSelected();
         boolean pizza = this.rdBtnPizza.isSelected();
-        if(bebida == true) {
+        if(bebida) {
             Bebida novo_produto = new Bebida(nome, preco, id, "Bebida");
             telaPrincipal.adicionarProdutoNaLista(novo_produto);
-        } else {
+        } else if(pizza) {
             Pizza novo_produto = new Pizza(nome, preco, id, Pizza.Tamanho.GRANDE);
             String[] ing = {"dd", "sds"};
             novo_produto.setSabor(novo_produto.new Sabor("Calabresa", ing));
             telaPrincipal.adicionarProdutoNaLista(novo_produto);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione um tipo de produto!");
+            return;
         }
         
         DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
-        model.addRow(new Object[]{id,nome,preco});
+        if(pizza)
+            model.addRow(new Object[]{id,nome,preco,"Pizza"});
+        else
+            model.addRow(new Object[]{id,nome,preco,"Bebida"});
         
         this.limparCampos();
     }//GEN-LAST:event_btnAdicionarActionPerformed
