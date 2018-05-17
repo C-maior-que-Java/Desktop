@@ -59,7 +59,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.painelProdutos = new PainelProdutos(this);
         this.painelEntregas = new PainelEntregas();
         this.painelClientes = new PainelCliente(this);
-        this.painelEditaCardapio = new PainelEditaCardapio(this);
+        this.painelEditaCardapio = new PainelEditaCardapio(this, funcionario, painelCardapio);
 
         this.tabbedPane.addTab("Cardapio", painelCardapio);
         //se o funcionario for administrador, habilitamos a tab para editar cardapio
