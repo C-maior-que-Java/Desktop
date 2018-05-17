@@ -6,7 +6,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -21,13 +20,16 @@ public class PizzaTableModel extends AbstractTableModel{
     
     private final ArrayList<Pizza> pizzas;
     private final String[] colunas;
+    private Cardapio cardapio;
     
-    public PizzaTableModel(){
+    public PizzaTableModel(Cardapio cardapio){
+        this.cardapio = cardapio;
         pizzas = new ArrayList<>();
         colunas = new String[]{"ID", "Nome", "Ingredientes", "Preço Pequena", "Preço Média", "Preço Grande"};
     }
     
-    public PizzaTableModel(ArrayList<Pizza> pizzas){
+    public PizzaTableModel(ArrayList<Pizza> pizzas, Cardapio cardapio){
+       this.cardapio = cardapio; 
        this.pizzas = new ArrayList<>();
        colunas = new String[]{"ID", "Nome", "Ingredientes", "Preço Pequena", "Preço Média", "Preço Grande"};
        addLista(this.pizzas);
@@ -40,6 +42,7 @@ public class PizzaTableModel extends AbstractTableModel{
         
         for(Pizza p: pizzas){
             this.pizzas.add(p);
+            cardapio.adicionarAoCardapio(p);
         }
         fireTableRowsInserted(oldSize, getRowCount()-1);
     }
@@ -47,6 +50,7 @@ public class PizzaTableModel extends AbstractTableModel{
     //adiciona a pizza à tabela e a atualiza
     public void addPizza(Pizza x){
         pizzas.add(x);
+        cardapio.adicionarAoCardapio(x);
         int lastIndex = getRowCount() - 1;
         fireTableRowsInserted(lastIndex, lastIndex);
     }
