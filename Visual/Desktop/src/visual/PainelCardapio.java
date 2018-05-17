@@ -31,7 +31,7 @@ public class PainelCardapio extends javax.swing.JPanel {
            }
         }
         
-        modelo = new PizzaTableModel(pizzas);
+        modelo = new PizzaTableModel(pizzas, cardapio);
         //table_pizza.setModel(modelo);
     }
     
@@ -45,7 +45,7 @@ public class PainelCardapio extends javax.swing.JPanel {
            }
         }
         
-        modelo = new PizzaTableModel(pizzas);
+        modelo = new PizzaTableModel(pizzas, cardapio);
         table_pizza.setModel(modelo);
     }
 
