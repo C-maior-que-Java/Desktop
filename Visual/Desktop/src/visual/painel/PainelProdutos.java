@@ -4,16 +4,16 @@
 * and open the template in the editor.
 */
 package visual.painel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 import model.produto.Bebida;
 import model.produto.GeradorIDProduto;
 import model.produto.Pizza;
 import model.produto.Pizza.Tamanho;
 import model.produto.PizzaDoisSabores;
-import model.produto.Produto;
 import visual.tela.TelaPrincipal;
+
 /**
  *
  * @author pedro
@@ -25,6 +25,14 @@ public class PainelProdutos extends javax.swing.JPanel {
     public PainelProdutos(TelaPrincipal telaPrincipal) {
         initComponents();
         this.telaPrincipal = telaPrincipal;
+        
+        String[] saboresDisponiveis = {"Selecione...", "Calabresa", "Mussarela", "Três Queijos", "Margherita"};
+        this.cbSabores.setModel(new DefaultComboBoxModel(saboresDisponiveis));
+        this.cbSaboresDuplo1.setModel(new DefaultComboBoxModel(saboresDisponiveis));
+        this.cbSaboresDuplo2.setModel(new DefaultComboBoxModel(saboresDisponiveis));
+        
+        String[] bebidasDisponiveis = {"Selecione...", "Refrigerante", "Cerveja", "Vinho"};
+        cbBebidas.setModel(new DefaultComboBoxModel(bebidasDisponiveis));
     }
     
     /**
@@ -52,6 +60,9 @@ public class PainelProdutos extends javax.swing.JPanel {
         rdBtnSaborUnico = new javax.swing.JRadioButton();
         rdBtnSaborDuplo = new javax.swing.JRadioButton();
         cbSabores = new javax.swing.JComboBox<>();
+        cbSaboresDuplo1 = new javax.swing.JComboBox<>();
+        cbSaboresDuplo2 = new javax.swing.JComboBox<>();
+        cbBebidas = new javax.swing.JComboBox<>();
 
         jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,15 +137,50 @@ public class PainelProdutos extends javax.swing.JPanel {
         buttonGroup2.add(rdBtnSaborUnico);
         rdBtnSaborUnico.setText("Sabor Único");
         rdBtnSaborUnico.setEnabled(false);
+        rdBtnSaborUnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtnSaborUnicoActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(rdBtnSaborDuplo);
         rdBtnSaborDuplo.setText("Sabor Duplo");
         rdBtnSaborDuplo.setEnabled(false);
+        rdBtnSaborDuplo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtnSaborDuploActionPerformed(evt);
+            }
+        });
 
         cbSabores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSabores.setEnabled(false);
         cbSabores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbSaboresActionPerformed(evt);
+            }
+        });
+
+        cbSaboresDuplo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSaboresDuplo1.setEnabled(false);
+        cbSaboresDuplo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSaboresDuplo1ActionPerformed(evt);
+            }
+        });
+
+        cbSaboresDuplo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSaboresDuplo2.setEnabled(false);
+        cbSaboresDuplo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSaboresDuplo2ActionPerformed(evt);
+            }
+        });
+
+        cbBebidas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbBebidas.setEnabled(false);
+        cbBebidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbBebidasActionPerformed(evt);
             }
         });
 
@@ -153,27 +199,37 @@ public class PainelProdutos extends javax.swing.JPanel {
                                 .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(btnRemover))
                         .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(0, 168, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(rdBtnPizza)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(rdBtnSaborDuplo)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbSaboresDuplo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(rdBtnPizza)
-                                .addGap(47, 47, 47)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rdBtnSaborUnico)
-                                    .addComponent(rdBtnSaborDuplo))
-                                .addGap(37, 37, 37)
-                                .addComponent(cbSabores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(88, 88, 88)
+                                .addComponent(rdBtnSaborUnico)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbSabores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(rdBtnBebida)
-                                .addGap(56, 56, 56)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbSaboresDuplo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -198,12 +254,18 @@ public class PainelProdutos extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRemover)
                             .addComponent(rdBtnPizza)
-                            .addComponent(rdBtnBebida)
-                            .addComponent(rdBtnSaborDuplo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdBtnSaborUnico))
-                    .addComponent(cbSabores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbSabores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rdBtnSaborUnico))
+                            .addComponent(cbBebidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdBtnSaborDuplo)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cbSaboresDuplo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbSaboresDuplo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(rdBtnBebida))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -225,7 +287,7 @@ public class PainelProdutos extends javax.swing.JPanel {
         
         if(bebida) {       
             
-            Bebida novo_produto = new Bebida(nome, preco, id, "Bebida");
+            Bebida novo_produto = new Bebida(nome, preco, id, cbBebidas.getItemAt(cbBebidas.getSelectedIndex()));
             telaPrincipal.adicionarProdutoNaLista(novo_produto);
             
         } else if(pizza) {
@@ -235,13 +297,13 @@ public class PainelProdutos extends javax.swing.JPanel {
             if (sabor_unico) {                
                 novo_produto = new Pizza(nome,preco,GeradorIDProduto.getIDProduto(),Tamanho.MEDIO);
                 String ingredientes[] = {"Molho","Quejo"};
-                novo_produto.setSabor(novo_produto.new Sabor("Queijo",ingredientes));
+                novo_produto.setSabor(novo_produto.new Sabor(cbSabores.getItemAt(cbSabores.getSelectedIndex()),ingredientes));
             }
             else if (sabor_duplo) {                
                 novo_produto = new PizzaDoisSabores(nome,preco,GeradorIDProduto.getIDProduto(),Pizza.Tamanho.MEDIO);
                 String ingredientes[] = {"Molho","Quejo"};
-                novo_produto.setSabor(novo_produto.new Sabor("Queijo",ingredientes));
-                ((PizzaDoisSabores)novo_produto).setSegundoSabor(novo_produto.new Sabor("Calabresa",ingredientes));                
+                novo_produto.setSabor(novo_produto.new Sabor(cbSaboresDuplo1.getItemAt(cbSaboresDuplo1.getSelectedIndex()),ingredientes));
+                ((PizzaDoisSabores)novo_produto).setSegundoSabor(novo_produto.new Sabor(cbSaboresDuplo2.getItemAt(cbSaboresDuplo2.getSelectedIndex()), ingredientes));
             }
             
             telaPrincipal.adicionarProdutoNaLista(novo_produto);
@@ -279,26 +341,64 @@ public class PainelProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRemoverActionPerformed
     
     private void rdBtnBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnBebidaActionPerformed
-        // TODO add your handling code here:
         rdBtnSaborUnico.setEnabled(false);
         rdBtnSaborDuplo.setEnabled(false);
+        cbSabores.setEnabled(false);
+        cbSaboresDuplo1.setEnabled(false);
+        cbSaboresDuplo2.setEnabled(false);
+        cbBebidas.setEnabled(true);
     }//GEN-LAST:event_rdBtnBebidaActionPerformed
     
     private void rdBtnPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnPizzaActionPerformed
-        // TODO add your handling code here:
         rdBtnSaborUnico.setEnabled(true);
         rdBtnSaborDuplo.setEnabled(true);
-        
+        cbSabores.setEnabled(false);
+        cbSaboresDuplo1.setEnabled(false);
+        cbSaboresDuplo2.setEnabled(false);
+        cbBebidas.setEnabled(false);
     }//GEN-LAST:event_rdBtnPizzaActionPerformed
     
     private void cbSaboresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSaboresActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_cbSaboresActionPerformed
+
+    private void cbSaboresDuplo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSaboresDuplo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbSaboresDuplo1ActionPerformed
+
+    private void rdBtnSaborUnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnSaborUnicoActionPerformed
+        cbSabores.setEnabled(true);
+        cbSaboresDuplo1.setEnabled(false);
+        cbSaboresDuplo2.setEnabled(false);
+    }//GEN-LAST:event_rdBtnSaborUnicoActionPerformed
+
+    private void rdBtnSaborDuploActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnSaborDuploActionPerformed
+        cbSabores.setEnabled(false);
+        cbSaboresDuplo1.setEnabled(true);
+        cbSaboresDuplo2.setEnabled(true);
+    }//GEN-LAST:event_rdBtnSaborDuploActionPerformed
+
+    private void cbSaboresDuplo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSaboresDuplo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbSaboresDuplo2ActionPerformed
+
+    private void cbBebidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBebidasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbBebidasActionPerformed
     
     private void limparCampos() {
         this.txtNome.setText("");
         this.txtPreco.setText("");
+        
+        rdBtnSaborUnico.setEnabled(false);
+        rdBtnSaborDuplo.setEnabled(false);
+        cbSabores.setEnabled(false);
+        cbSaboresDuplo1.setEnabled(false);
+        cbSaboresDuplo2.setEnabled(false);
+        
+        cbSabores.setSelectedIndex(0);
+        cbSaboresDuplo1.setSelectedIndex(0);
+        cbSaboresDuplo2.setSelectedIndex(0);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -307,7 +407,10 @@ public class PainelProdutos extends javax.swing.JPanel {
     private javax.swing.JButton btnRemover;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cbBebidas;
     private javax.swing.JComboBox<String> cbSabores;
+    private javax.swing.JComboBox<String> cbSaboresDuplo1;
+    private javax.swing.JComboBox<String> cbSaboresDuplo2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
