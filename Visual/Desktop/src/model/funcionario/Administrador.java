@@ -1,4 +1,7 @@
-package model;
+package model.funcionario;
+
+import model.cardapio.Cardapio;
+import model.produto.Produto;
 
 public class Administrador extends Funcionario {
     

@@ -3,13 +3,14 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package visual;
+package visual.painel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
-import model.Bebida;
-import model.Pizza;
-import model.Produto;
+import model.produto.Bebida;
+import model.produto.Pizza;
+import model.produto.Produto;
+import visual.tela.TelaPrincipal;
 /**
  *
  * @author pedro
@@ -156,7 +157,6 @@ public class PainelProdutos extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAdicionar))
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)

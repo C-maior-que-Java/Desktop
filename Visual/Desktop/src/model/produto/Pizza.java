@@ -1,4 +1,4 @@
-package model;
+package model.produto;
 
 public class Pizza extends Produto {
     
