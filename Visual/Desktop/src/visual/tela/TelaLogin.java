@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package visual.tela;
 
-import model.Administrador;
-import model.Atendente;
-import model.Funcionario;
+import javax.swing.JOptionPane;
+import model.funcionario.Administrador;
+import model.funcionario.Atendente;
+import model.funcionario.Funcionario;
 
 /**
  *
@@ -96,9 +97,7 @@ public class TelaLogin extends javax.swing.JFrame {
         String senha = String.valueOf(passwordTextField.getPassword());
         
         if(login.isEmpty() || senha.isEmpty()) {
-            DefaultDialog dialog = new DefaultDialog(this, true, "Campos vazios!");
-            dialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            dialog.setVisible(true);
+            JOptionPane.showMessageDialog(null, "Campos vazios!");
         } else {
             
             //inventando se eh Admin ou Atendente

@@ -3,20 +3,26 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package visual;
+package visual.tela;
 
+import visual.painel.PainelCliente;
+import visual.painel.PainelProdutos;
+import visual.painel.PainelPedidos;
+import visual.painel.PainelCardapio;
+import visual.painel.PainelEditaCardapio;
+import visual.painel.PainelEntregas;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import model.Administrador;
-import model.Cliente;
-import model.Entrega;
-import model.Funcionario;
-import model.Pedido;
-import model.Produto;
-import model.Cardapio;
+import model.funcionario.Administrador;
+import model.cliente.Cliente;
+import model.entrega.Entrega;
+import model.funcionario.Funcionario;
+import model.pedido.Pedido;
+import model.produto.Produto;
+import model.cardapio.Cardapio;
 
 /**
  *

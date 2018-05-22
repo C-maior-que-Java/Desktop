@@ -3,10 +3,11 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package visual;
+package visual.painel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Cliente;
+import model.cliente.Cliente;
+import visual.tela.TelaPrincipal;
 /**
  *
  * @author ra197569

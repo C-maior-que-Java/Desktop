@@ -1,4 +1,4 @@
-package model;
+package model.funcionario;
 
 import java.util.Scanner;
 

@@ -1,6 +1,8 @@
-package model;
+package model.pedido;
 
+import model.produto.Produto;
 import java.util.ArrayList;
+import model.cliente.Cliente;
 
 public class Pedido {
     

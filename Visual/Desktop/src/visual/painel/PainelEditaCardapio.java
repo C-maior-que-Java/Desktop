@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package visual.painel;
 
 
-import model.Funcionario;
+import model.funcionario.Funcionario;
+import visual.tela.TelaPrincipal;
 /**
  *
  * @author ra204481

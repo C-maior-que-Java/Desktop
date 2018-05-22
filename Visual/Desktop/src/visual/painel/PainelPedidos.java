@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package visual.painel;
 
 import javax.swing.table.DefaultTableModel;
-import model.Pedido;
+import model.pedido.Pedido;
 import java.util.ArrayList;
 import java.text.DecimalFormat;
+import visual.tela.TelaFazerPedido;
+import visual.tela.TelaPrincipal;
 
 
 /**
@@ -115,7 +117,7 @@ public class PainelPedidos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FazerPedido telaFazerPedido = new FazerPedido(this.telaPrincipal);
+        TelaFazerPedido telaFazerPedido = new TelaFazerPedido(this.telaPrincipal);
         telaFazerPedido.setVisible(true);
 
         //telaPrincipal.adionarPedidoNaLista(null);

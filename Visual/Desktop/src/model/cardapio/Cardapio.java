@@ -1,5 +1,6 @@
-package model;
+package model.cardapio;
 
+import model.produto.Produto;
 import java.util.ArrayList;
 
 public class Cardapio{

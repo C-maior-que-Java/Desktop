@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package visual;
+package visual.painel;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import model.Cardapio;
-import model.Pizza;
-import model.PizzaTableModel;
-import model.Produto;
+import model.cardapio.Cardapio;
+import model.produto.Pizza;
+import model.produto.Produto;
+import visual.tela.TelaPrincipal;
 
 public class PainelCardapio extends javax.swing.JPanel {
 
     private Cardapio cardapio;
     private TelaPrincipal telaPrincipal;
-    private PizzaTableModel modelo;
     private ArrayList<Pizza> pizzas;
     
     public PainelCardapio(Cardapio cardapio, TelaPrincipal telaPrincipal){
@@ -30,9 +29,6 @@ public class PainelCardapio extends javax.swing.JPanel {
                pizzas.add(((Pizza) prod));
            }
         }
-        
-        modelo = new PizzaTableModel(pizzas, cardapio);
-        //table_pizza.setModel(modelo);
     }
     
     public void refresh(Cardapio cardapio) {
@@ -44,9 +40,6 @@ public class PainelCardapio extends javax.swing.JPanel {
                pizzas.add(((Pizza) prod));
            }
         }
-        
-        modelo = new PizzaTableModel(pizzas, cardapio);
-        table_pizza.setModel(modelo);
     }
 
     @SuppressWarnings("unchecked")

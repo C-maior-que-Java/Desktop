@@ -1,4 +1,4 @@
-package visual;
+package visual.painel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,8 +8,9 @@ package visual;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Entrega;
-import visual.TelaPrincipal;
+import model.entrega.Entrega;
+import visual.tela.TelaPrincipal;
+import visual.tela.TelaPrincipal;
 
 /**
  *

@@ -1,4 +1,7 @@
-package model;
+package model.entrega;
+
+import model.cliente.Cliente;
+import model.pedido.Pedido;
 
 public class Entrega {
     

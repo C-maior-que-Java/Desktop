@@ -1,4 +1,4 @@
-package model;
+package model.pedido;
 
 public class GeradorNumPedido {
     
