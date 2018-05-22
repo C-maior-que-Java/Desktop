@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.table.DefaultTableModel;
 import model.produto.Bebida;
+import model.produto.GeradorIDProduto;
 import model.produto.Pizza;
 import model.produto.Produto;
 import visual.tela.TelaPrincipal;
@@ -41,9 +42,7 @@ public class PainelProdutos extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
-        txtID = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
         rdBtnPizza = new javax.swing.JRadioButton();
         rdBtnBebida = new javax.swing.JRadioButton();
@@ -100,8 +99,6 @@ public class PainelProdutos extends javax.swing.JPanel {
 
         jLabel2.setText("Preço");
 
-        jLabel3.setText("ID");
-
         btnAlterar.setText("Alterar Produto");
 
         buttonGroup1.add(rdBtnPizza);
@@ -133,14 +130,12 @@ public class PainelProdutos extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2))
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rdBtnPizza)
                                 .addGap(18, 18, 18)
@@ -165,12 +160,8 @@ public class PainelProdutos extends javax.swing.JPanel {
                         .addComponent(btnAlterar)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnRemover)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(btnRemover)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdBtnPizza)
                     .addComponent(rdBtnBebida))
@@ -188,7 +179,7 @@ public class PainelProdutos extends javax.swing.JPanel {
         // TODO add your handling code here:
         String nome = txtNome.getText();
         float preco = Float.valueOf(txtPreco.getText());
-        int id = Integer.valueOf(txtID.getText());
+        int id = GeradorIDProduto.getIDProduto();
         boolean bebida = this.rdBtnBebida.isSelected();
         boolean pizza = this.rdBtnPizza.isSelected();
         if(bebida) {
@@ -239,7 +230,6 @@ public class PainelProdutos extends javax.swing.JPanel {
     }//GEN-LAST:event_rdBtnBebidaActionPerformed
     
     private void limparCampos() {
-        this.txtID.setText("");
         this.txtNome.setText("");
         this.txtPreco.setText("");
     }
@@ -251,12 +241,10 @@ public class PainelProdutos extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProdutos;
     private javax.swing.JRadioButton rdBtnBebida;
     private javax.swing.JRadioButton rdBtnPizza;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
