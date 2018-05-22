@@ -3,7 +3,7 @@ package model.produto;
 public class Pizza extends Produto {
     
     public class Sabor {
-        private String nome;
+        private String nome;    //deixar esses atributos final?
         private String[] ingredientes;
         
         public Sabor(String nome, String[] ingredientes){
@@ -83,17 +83,10 @@ public class Pizza extends Produto {
         }
     }
     
-    public void setIngredientes(String[] x){
-        sabor.ingredientes = x;
-    }
-    
-    public String[] getIngredientes(){
-        return sabor.ingredientes;
-    }
-    
     @Override
     public String getNome(){
-        return sabor.nome;
+        String saida = "Pizza de " + sabor.getNome();
+        return saida;
     }
     
     //exibe todos os ingredientes da pizza
@@ -112,15 +105,6 @@ public class Pizza extends Produto {
             }
         }
         return saida;
-    }
-    
-    //checa se ha um ingrediente especifico na pizza
-    public boolean temIngrediente(String ingrediente) {
-        for(String i : sabor.ingredientes) {
-            if(ingrediente == i)
-                return true;
-        }
-        return false;
     }
     
 }

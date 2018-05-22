@@ -82,7 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 JTabbedPane mytabbedPane = (JTabbedPane) e.getSource();
                 switch(mytabbedPane.getSelectedIndex()) {
-                    case 0: ((PainelCardapio) painelCardapio).refresh(cardapio); break;
+                    case 0: ((PainelCardapio) painelCardapio).refresh(); break;
                     case 1: break;
                     case 2: break;
                     case 3: break;
