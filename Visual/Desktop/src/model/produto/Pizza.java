@@ -20,7 +20,6 @@ public class Pizza extends Produto {
         }
     }
     
-    
     public enum Tamanho{
         
         //implementando enum pra obter precos diferentes de acordo com o tamanho da pizza

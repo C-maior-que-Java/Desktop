@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import model.produto.Bebida;
 import model.produto.GeradorIDProduto;
 import model.produto.Pizza;
+import model.produto.Pizza.Tamanho;
+import model.produto.PizzaDoisSabores;
 import model.produto.Produto;
 import visual.tela.TelaPrincipal;
 /**
@@ -35,6 +37,7 @@ public class PainelProdutos extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProdutos = new javax.swing.JTable();
         btnRemover = new javax.swing.JButton();
@@ -46,6 +49,9 @@ public class PainelProdutos extends javax.swing.JPanel {
         btnAlterar = new javax.swing.JButton();
         rdBtnPizza = new javax.swing.JRadioButton();
         rdBtnBebida = new javax.swing.JRadioButton();
+        rdBtnSaborUnico = new javax.swing.JRadioButton();
+        rdBtnSaborDuplo = new javax.swing.JRadioButton();
+        cbSabores = new javax.swing.JComboBox<>();
 
         jTableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -103,12 +109,32 @@ public class PainelProdutos extends javax.swing.JPanel {
 
         buttonGroup1.add(rdBtnPizza);
         rdBtnPizza.setText("Pizza");
+        rdBtnPizza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdBtnPizzaActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rdBtnBebida);
         rdBtnBebida.setText("Bebida");
         rdBtnBebida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtnBebidaActionPerformed(evt);
+            }
+        });
+
+        buttonGroup2.add(rdBtnSaborUnico);
+        rdBtnSaborUnico.setText("Sabor Único");
+        rdBtnSaborUnico.setEnabled(false);
+
+        buttonGroup2.add(rdBtnSaborDuplo);
+        rdBtnSaborDuplo.setText("Sabor Duplo");
+        rdBtnSaborDuplo.setEnabled(false);
+
+        cbSabores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSabores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSaboresActionPerformed(evt);
             }
         });
 
@@ -119,7 +145,7 @@ public class PainelProdutos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -127,7 +153,7 @@ public class PainelProdutos extends javax.swing.JPanel {
                                 .addComponent(btnAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(btnRemover))
                         .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -135,12 +161,19 @@ public class PainelProdutos extends javax.swing.JPanel {
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rdBtnPizza)
-                                .addGap(18, 18, 18)
-                                .addComponent(rdBtnBebida)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rdBtnSaborUnico)
+                                    .addComponent(rdBtnSaborDuplo))
+                                .addGap(37, 37, 37)
+                                .addComponent(cbSabores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(88, 88, 88)
+                                .addComponent(rdBtnBebida)
+                                .addGap(56, 56, 56)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -160,12 +193,17 @@ public class PainelProdutos extends javax.swing.JPanel {
                         .addComponent(btnAlterar)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(btnRemover)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdBtnPizza)
-                    .addComponent(rdBtnBebida))
-                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRemover)
+                            .addComponent(rdBtnPizza)
+                            .addComponent(rdBtnBebida)
+                            .addComponent(rdBtnSaborDuplo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdBtnSaborUnico))
+                    .addComponent(cbSabores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -182,15 +220,34 @@ public class PainelProdutos extends javax.swing.JPanel {
         int id = GeradorIDProduto.getIDProduto();
         boolean bebida = this.rdBtnBebida.isSelected();
         boolean pizza = this.rdBtnPizza.isSelected();
-        if(bebida) {
+        boolean sabor_unico = this.rdBtnSaborUnico.isSelected();
+        boolean sabor_duplo = this.rdBtnSaborDuplo.isSelected();
+        
+        if(bebida) {       
+            
             Bebida novo_produto = new Bebida(nome, preco, id, "Bebida");
             telaPrincipal.adicionarProdutoNaLista(novo_produto);
+            
         } else if(pizza) {
-            Pizza novo_produto = new Pizza(nome, preco, id, Pizza.Tamanho.GRANDE);
-            String[] ing = {"dd", "sds"};
-            novo_produto.setSabor(novo_produto.new Sabor("Calabresa", ing));
+            
+            Pizza novo_produto = null;
+            
+            if (sabor_unico) {                
+                novo_produto = new Pizza(nome,preco,GeradorIDProduto.getIDProduto(),Tamanho.MEDIO);
+                String ingredientes[] = {"Molho","Quejo"};
+                novo_produto.setSabor(novo_produto.new Sabor("Queijo",ingredientes));
+            }
+            else if (sabor_duplo) {                
+                novo_produto = new PizzaDoisSabores(nome,preco,GeradorIDProduto.getIDProduto(),Pizza.Tamanho.MEDIO);
+                String ingredientes[] = {"Molho","Quejo"};
+                novo_produto.setSabor(novo_produto.new Sabor("Queijo",ingredientes));
+                ((PizzaDoisSabores)novo_produto).setSegundoSabor(novo_produto.new Sabor("Calabresa",ingredientes));                
+            }
+            
             telaPrincipal.adicionarProdutoNaLista(novo_produto);
+            
         } else {
+            
             JOptionPane.showMessageDialog(null, "Selecione um tipo de produto!");
             return;
         }
@@ -209,25 +266,35 @@ public class PainelProdutos extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
         int selectIndice = jTableProdutos.getSelectedRow();
-        if(selectIndice < 0){
-            if( model.getRowCount() > 0){
+        if(selectIndice < 0) {
+            if( model.getRowCount() > 0) {
                 JOptionPane.showMessageDialog(null, "Você não selecionou um item da lista !");
             }else{
                 JOptionPane.showMessageDialog(null, "Não há itens na lista para remover !");
             }
-        }else{
+        } else {
             model.removeRow(selectIndice);
             telaPrincipal.removerProdutoDaLista(selectIndice);
         }
-        
-        /*for(Produto p : telaPrincipal.getProdutos()){
-        System.out.println("Produtos: " + p.getNome());
-        }*/
     }//GEN-LAST:event_btnRemoverActionPerformed
     
     private void rdBtnBebidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnBebidaActionPerformed
         // TODO add your handling code here:
+        rdBtnSaborUnico.setEnabled(false);
+        rdBtnSaborDuplo.setEnabled(false);
     }//GEN-LAST:event_rdBtnBebidaActionPerformed
+    
+    private void rdBtnPizzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnPizzaActionPerformed
+        // TODO add your handling code here:
+        rdBtnSaborUnico.setEnabled(true);
+        rdBtnSaborDuplo.setEnabled(true);
+        
+    }//GEN-LAST:event_rdBtnPizzaActionPerformed
+    
+    private void cbSaboresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSaboresActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cbSaboresActionPerformed
     
     private void limparCampos() {
         this.txtNome.setText("");
@@ -239,12 +306,16 @@ public class PainelProdutos extends javax.swing.JPanel {
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnRemover;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cbSabores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableProdutos;
     private javax.swing.JRadioButton rdBtnBebida;
     private javax.swing.JRadioButton rdBtnPizza;
+    private javax.swing.JRadioButton rdBtnSaborDuplo;
+    private javax.swing.JRadioButton rdBtnSaborUnico;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
