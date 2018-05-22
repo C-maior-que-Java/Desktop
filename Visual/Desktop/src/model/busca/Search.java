@@ -6,6 +6,7 @@ import model.cliente.Cliente;
 import model.pedido.Pedido;
 import model.produto.Bebida;
 import model.produto.Pizza;
+import model.produto.PizzaDoisSabores;
 import model.produto.Produto;
 
 /**
@@ -67,6 +68,27 @@ public class Search {
                 return cliente;
         }
         return null;
+    }
+    
+    //Estre checa se ha um ingrediente especifico na pizza
+    public static boolean temIngrediente(Pizza pizza, String ingrediente) {
+        String[] ingredientes = pizza.getSabor().getIngredientes();
+        
+        for(String i : ingredientes) {
+            if(i.equalsIgnoreCase(ingrediente))
+                return true;
+        }
+        
+        // Caso a pizza seja de dois sabores procura-se nos ingredientes do segundo sabor
+        if(pizza instanceof PizzaDoisSabores){
+            ingredientes = ((PizzaDoisSabores) pizza).getSegundoSabor().getIngredientes();
+            for(String i : ingredientes){
+                if(i.equalsIgnoreCase(ingrediente))
+                    return true;
+            }
+        }
+            
+        return false;
     }
     
 }

@@ -8,6 +8,7 @@ package visual.painel;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.cardapio.Cardapio;
+import model.produto.Bebida;
 import model.produto.Pizza;
 import model.produto.Produto;
 import visual.tela.TelaPrincipal;
@@ -16,29 +17,34 @@ public class PainelCardapio extends javax.swing.JPanel {
 
     private Cardapio cardapio;
     private TelaPrincipal telaPrincipal;
-    private ArrayList<Pizza> pizzas;
     
     public PainelCardapio(Cardapio cardapio, TelaPrincipal telaPrincipal){
     	initComponents();
         this.cardapio = cardapio;
 	this.telaPrincipal = telaPrincipal;
-        this.pizzas = new ArrayList<>();
         
-        for(Produto prod : cardapio.getProdutos()){
-           if(prod instanceof Pizza){
-               pizzas.add(((Pizza) prod));
-           }
-        }
+        refresh();
     }
     
-    public void refresh(Cardapio cardapio) {
-        System.out.println("chamou uasdyagsuyagsd");
+    //atualiza o cardapio
+    public void refresh() {
+        
+        DefaultTableModel modelPizza = (DefaultTableModel) table_pizza.getModel();
+        DefaultTableModel modelBebida = (DefaultTableModel) table_bebida.getModel();
+        
+        while(modelPizza.getRowCount() > 0)
+            modelPizza.removeRow(0);
+        
+       while(modelBebida.getRowCount() > 0)
+            modelBebida.removeRow(0);
         
         for(Produto prod : cardapio.getProdutos()){
-           if(prod instanceof Pizza){
-               System.out.println(((Pizza) prod).getNome());               
-               pizzas.add(((Pizza) prod));
+           if(prod instanceof Pizza){             
+               modelPizza.addRow(new Object[]{prod.getID(), prod.getNome(), "não implementado", 
+                                         prod.getPreco(), prod.getPreco(), prod.getPreco()});
            }
+           else if(prod instanceof Bebida)
+               modelBebida.addRow(new Object[]{prod.getID(), prod.getNome(), prod.getPreco()});
         }
     }
 
