@@ -2,27 +2,62 @@ package model.produto;
 
 public class Pizza extends Produto {
     
-    public class Sabor{
-        String nome;
-        String[] ingredientes;
+    public class Sabor {
+        private String nome;
+        private String[] ingredientes;
         
         public Sabor(String nome, String[] ingredientes){
             this.nome = nome;
             this.ingredientes = ingredientes;
         }
+        
+        public String getNome() {
+            return this.nome;
+        }
+        
+        public String[] getIngredientes() {
+            return this.ingredientes;
+        }
     }
-    // atributos
+    
+    
     public enum Tamanho{
-        PEQUENO, MEDIO, GRANDE;
+        
+        //implementando enum pra obter precos diferentes de acordo com o tamanho da pizza
+        PEQUENO(4.50f), MEDIO(10.50f), GRANDE(15.60f);
+        private float preco;
+        
+        Tamanho(float preco) {
+            this.preco = preco;
+        }
+        
+        public float getPreco() {
+            return this.preco;
+        }
     }
     
-    //implementar algo pra obter precos diferentes
-    
+    // atributos
     private Tamanho tamanho;
-    private Sabor sabor;
+    protected Sabor sabor;
     
-    //construtor
+    /*
+        Sobrecarga do construtor da classe Pizza. Tamanho MEDIO default
+    */    
     public Pizza(String nome , float preco, int ID, Tamanho t) {
+        this(nome, preco, ID, t, null);
+    }
+    
+    /*
+        Sobrecarga do construtor da classe Pizza. Tamanho MEDIO default
+    */
+    public Pizza(String nome , float preco, int ID) {
+        this(nome, preco, ID, Tamanho.MEDIO, null);
+    }
+    
+    /*
+        Construtor da classe Pizza
+    */
+    public Pizza(String nome , float preco, int ID, Tamanho t, Sabor sabor) {
         super(nome, preco, ID);
         this.sabor = sabor;
         switch (t){
