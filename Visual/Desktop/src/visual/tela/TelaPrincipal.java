@@ -9,14 +9,12 @@ import visual.painel.PainelCliente;
 import visual.painel.PainelProdutos;
 import visual.painel.PainelPedidos;
 import visual.painel.PainelCardapio;
-import visual.painel.PainelEditaCardapio;
 import visual.painel.PainelEntregas;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import model.funcionario.Administrador;
 import model.cliente.Cliente;
 import model.entrega.Entrega;
 import model.funcionario.Funcionario;
@@ -43,7 +41,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private JComponent painelProdutos;
     private JComponent painelEntregas;
     private JComponent painelClientes;
-    private JComponent painelEditaCardapio;
 
     /**
      * Creates new form TelaAdministrador
@@ -51,6 +48,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal(Funcionario funcionario) {
 
         initComponents();
+        this.setLocationRelativeTo(null);
         
         this.produtos = new ArrayList<>();
         this.pedidos  = new ArrayList<>();
@@ -65,12 +63,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.painelProdutos = new PainelProdutos(this);
         this.painelEntregas = new PainelEntregas(this);
         this.painelClientes = new PainelCliente(this);
-        this.painelEditaCardapio = new PainelEditaCardapio(this, funcionario, (PainelCardapio) painelCardapio);
+       
 
         this.tabbedPane.addTab("Cardapio", painelCardapio);
-        //se o funcionario for administrador, habilitamos a tab para editar cardapio
-        if(this.funcionarioSessaoAtual instanceof Administrador)
-            this.tabbedPane.addTab("Editar cardapio", painelEditaCardapio);
         this.tabbedPane.addTab("Pedidos", painelPedidos);
         this.tabbedPane.addTab("Produtos", painelProdutos);
         this.tabbedPane.addTab("Entregas", painelEntregas);
@@ -169,16 +164,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
