@@ -50,19 +50,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        this.pedidos  = new ArrayList<>();
-        this.entregas = new ArrayList<>();
-        this.clientes = new ArrayList<>();
-        this.cardapio = new Cardapio();
-        this.produtos = cardapio.getProdutos();
+        pedidos  = new ArrayList<>();
+        entregas = new ArrayList<>();
+        clientes = new ArrayList<>();
+        cardapio = new Cardapio();
+        produtos = cardapio.getProdutos();
 
-        this.funcionarioSessaoAtual = funcionario;        
+        funcionarioSessaoAtual = funcionario;        
 
-        this.painelCardapio = new PainelCardapio(this.cardapio, this);
-        this.painelPedidos = new PainelPedidos(this);
-        this.painelProdutos = new PainelProdutos(this);
-        this.painelEntregas = new PainelEntregas(this);
-        this.painelClientes = new PainelCliente(this);
+        painelCardapio = new PainelCardapio(cardapio, this);
+        painelPedidos = new PainelPedidos(this);
+        painelProdutos = new PainelProdutos(this);
+        painelEntregas = new PainelEntregas(this);
+        painelClientes = new PainelCliente(this);
        
 
         this.tabbedPane.addTab("Cardapio", painelCardapio);
@@ -94,41 +94,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
     */
 
     public void adicionarProdutoNaLista(Produto produto) {
-        this.produtos.add(produto);
+        produtos.add(produto);
         ((PainelCardapio)painelCardapio).refresh();
     }
 
     public void adicionarPedidoNaLista(Pedido pedido) {
-        this.pedidos.add(pedido);
+        pedidos.add(pedido);
     }
 
     public void adicionarEntregaNaLista(Entrega entrega) {
-        this.entregas.add(entrega);
+        entregas.add(entrega);
     }
 
     public void adicionarClienteNaLista(Cliente cliente) {
-        this.clientes.add(cliente);
+        clientes.add(cliente);
     }
 
     public void removerProdutoDaLista(int indice) {
-        this.produtos.remove(indice);
+        produtos.remove(indice);
         ((PainelCardapio)painelCardapio).refresh();
     }
 
     public void removerPedidoDaLista(int indice) {
-        this.pedidos.remove(indice);
+        pedidos.remove(indice);
     }
 
     public void removerEntregaDaLista(int indice) {
-        this.entregas.remove(indice);
+        entregas.remove(indice);
     }
 
     public void removerClienteDaLista(int indice) {
-        this.clientes.remove(indice);
+        clientes.remove(indice);
     }
     
     public Cardapio getCardapio() {
-        return this.cardapio;
+        return cardapio;
     }
 
     public ArrayList<Produto> getProdutos() {

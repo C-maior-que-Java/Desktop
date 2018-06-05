@@ -70,10 +70,33 @@ public class PainelProdutos extends javax.swing.JPanel {
 
             },
             new String [] {
-
+                "ID", "Nome/Sabor", "Preço", "Tipo"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableProdutos);
+        if (jTableProdutos.getColumnModel().getColumnCount() > 0) {
+            jTableProdutos.getColumnModel().getColumn(0).setPreferredWidth(20);
+            jTableProdutos.getColumnModel().getColumn(1).setPreferredWidth(250);
+            jTableProdutos.getColumnModel().getColumn(2).setResizable(false);
+            jTableProdutos.getColumnModel().getColumn(2).setPreferredWidth(50);
+            jTableProdutos.getColumnModel().getColumn(3).setResizable(false);
+            jTableProdutos.getColumnModel().getColumn(3).setPreferredWidth(70);
+        }
 
         btnRemover.setText("Remover Produto");
         btnRemover.addActionListener(new java.awt.event.ActionListener() {
@@ -275,18 +298,22 @@ public class PainelProdutos extends javax.swing.JPanel {
             
         } else if(pizza) {
             
-            Pizza novo_produto = null;
+            Pizza novo_produto;
             
             if (sabor_unico) {                
                 novo_produto = new Pizza(nome,preco,GeradorIDProduto.getIDProduto(),Tamanho.MEDIO);
                 String ingredientes[] = {"Molho","Quejo"};
-                novo_produto.setSabor(new Sabor(cbSabores.getItemAt(cbSabores.getSelectedIndex()),ingredientes));
+                Pizza.Sabor sabor = new Sabor(cbSabores.getItemAt(cbSabores.getSelectedIndex()),ingredientes);
+                novo_produto.setSabor(sabor);
             }
-            else if (sabor_duplo) {                
+            else{                
                 novo_produto = new PizzaDoisSabores(nome,preco,GeradorIDProduto.getIDProduto(),Pizza.Tamanho.MEDIO);
                 String ingredientes[] = {"Molho","Quejo"};
-                novo_produto.setSabor(new Sabor(cbSaboresDuplo1.getItemAt(cbSaboresDuplo1.getSelectedIndex()),ingredientes));
-                ((PizzaDoisSabores)novo_produto).setSegundoSabor(new Sabor(cbSaboresDuplo2.getItemAt(cbSaboresDuplo2.getSelectedIndex()), ingredientes));
+                Pizza.Sabor sabor1, sabor2;
+                sabor1 = new Sabor(cbSaboresDuplo1.getItemAt(cbSaboresDuplo1.getSelectedIndex()),ingredientes);
+                novo_produto.setSabor(sabor1);
+                sabor2 = new Sabor(cbSaboresDuplo2.getItemAt(cbSaboresDuplo2.getSelectedIndex()), ingredientes);
+                ((PizzaDoisSabores)novo_produto).setSegundoSabor(sabor2);
             }
             
             telaPrincipal.adicionarProdutoNaLista(novo_produto);
@@ -382,6 +409,8 @@ public class PainelProdutos extends javax.swing.JPanel {
         cbSabores.setSelectedIndex(0);
         cbSaboresDuplo1.setSelectedIndex(0);
         cbSaboresDuplo2.setSelectedIndex(0);
+        
+        jTableProdutos.clearSelection();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
