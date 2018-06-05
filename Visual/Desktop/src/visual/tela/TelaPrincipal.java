@@ -50,11 +50,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         
-        this.produtos = new ArrayList<>();
         this.pedidos  = new ArrayList<>();
         this.entregas = new ArrayList<>();
         this.clientes = new ArrayList<>();
-        this.cardapio = new Cardapio(new Produto("Pizza" ,(float) 33.3, 1), new Produto("coca", (float) 66.6, 2), new Produto("coxinha", (float) 99.9, 3));
+        this.cardapio = new Cardapio();
+        this.produtos = cardapio.getProdutos();
 
         this.funcionarioSessaoAtual = funcionario;        
 
@@ -77,7 +77,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 JTabbedPane mytabbedPane = (JTabbedPane) e.getSource();
                 switch(mytabbedPane.getSelectedIndex()) {
-                    case 0: ((PainelCardapio) painelCardapio).refresh(); break;
+                    case 0: break;
                     case 1: break;
                     case 2: break;
                     case 3: break;
@@ -95,7 +95,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public void adicionarProdutoNaLista(Produto produto) {
         this.produtos.add(produto);
-        this.cardapio.adicionarAoCardapio(produto);
+        ((PainelCardapio)painelCardapio).refresh();
     }
 
     public void adicionarPedidoNaLista(Pedido pedido) {
@@ -112,6 +112,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public void removerProdutoDaLista(int indice) {
         this.produtos.remove(indice);
+        ((PainelCardapio)painelCardapio).refresh();
     }
 
     public void removerPedidoDaLista(int indice) {

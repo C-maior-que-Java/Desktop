@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import model.produto.Bebida;
 import model.produto.GeradorIDProduto;
 import model.produto.Pizza;
+import model.produto.Pizza.Sabor;
 import model.produto.Pizza.Tamanho;
 import model.produto.PizzaDoisSabores;
 import visual.tela.TelaPrincipal;
@@ -279,13 +280,13 @@ public class PainelProdutos extends javax.swing.JPanel {
             if (sabor_unico) {                
                 novo_produto = new Pizza(nome,preco,GeradorIDProduto.getIDProduto(),Tamanho.MEDIO);
                 String ingredientes[] = {"Molho","Quejo"};
-                novo_produto.setSabor(novo_produto.new Sabor(cbSabores.getItemAt(cbSabores.getSelectedIndex()),ingredientes));
+                novo_produto.setSabor(new Sabor(cbSabores.getItemAt(cbSabores.getSelectedIndex()),ingredientes));
             }
             else if (sabor_duplo) {                
                 novo_produto = new PizzaDoisSabores(nome,preco,GeradorIDProduto.getIDProduto(),Pizza.Tamanho.MEDIO);
                 String ingredientes[] = {"Molho","Quejo"};
-                novo_produto.setSabor(novo_produto.new Sabor(cbSaboresDuplo1.getItemAt(cbSaboresDuplo1.getSelectedIndex()),ingredientes));
-                ((PizzaDoisSabores)novo_produto).setSegundoSabor(novo_produto.new Sabor(cbSaboresDuplo2.getItemAt(cbSaboresDuplo2.getSelectedIndex()), ingredientes));
+                novo_produto.setSabor(new Sabor(cbSaboresDuplo1.getItemAt(cbSaboresDuplo1.getSelectedIndex()),ingredientes));
+                ((PizzaDoisSabores)novo_produto).setSegundoSabor(new Sabor(cbSaboresDuplo2.getItemAt(cbSaboresDuplo2.getSelectedIndex()), ingredientes));
             }
             
             telaPrincipal.adicionarProdutoNaLista(novo_produto);

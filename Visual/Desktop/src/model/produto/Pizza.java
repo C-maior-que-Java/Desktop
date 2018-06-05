@@ -2,7 +2,7 @@ package model.produto;
 
 public class Pizza extends Produto {
     
-    public class Sabor {
+    public static class Sabor {
         private String nome;    //deixar esses atributos final?
         private String[] ingredientes;
         
