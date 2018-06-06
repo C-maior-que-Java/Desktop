@@ -24,9 +24,9 @@ public class Produto {
         return ID;
     }
     
-    public void setID(int id){
-        ID = id;
-    }
+//    public void setID(int id){
+//        ID = id;
+//    }
     
     public String getinfo(){
         return null;
