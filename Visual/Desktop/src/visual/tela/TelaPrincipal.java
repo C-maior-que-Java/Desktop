@@ -64,10 +64,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelEntregas = new PainelEntregas(this);
         painelClientes = new PainelCliente(this);
        
-
-        this.tabbedPane.addTab("Cardapio", painelCardapio);
-        this.tabbedPane.addTab("Pedidos", painelPedidos);
         this.tabbedPane.addTab("Produtos", painelProdutos);
+        this.tabbedPane.addTab("Cardapio", painelCardapio);
+        this.tabbedPane.addTab("Pedidos", painelPedidos);        
         this.tabbedPane.addTab("Entregas", painelEntregas);
         this.tabbedPane.addTab("Clientes", painelClientes);
         
@@ -99,7 +98,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void adicionarPedidoNaLista(Pedido pedido) {
+        System.out.println("ADICIONOU -> " + pedido.getNumPedido());
         pedidos.add(pedido);
+        if(pedido.isRealizarEntrega()) {
+            if(pedido.getCliente() != null)
+                this.entregas.add(new Entrega(pedido.getCliente().getEndereco(), pedido, pedido.getCliente(), 1)); // bastante informacao redundante na classe Entrega -> melhorar isso
+            else
+                this.entregas.add(new Entrega("Nao encontrado", pedido, null, 1)); // bastante informacao redundante na classe Entrega -> melhorar isso
+        }
+        ((PainelEntregas)painelEntregas).refresh(); // fazer a mesma coisa que o painel de produto faz para 
     }
 
     public void adicionarEntregaNaLista(Entrega entrega) {
@@ -142,9 +149,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public ArrayList<Entrega> getEntregas() {
        return entregas;
     }
-//
-//    public ArrayList<Cliente> getClientes() {
-//        return clientes;
+    
+    public Cliente buscarCliente(String nome) {
+        for(Cliente c : this.clientes)
+            if(c.getNome().equals(nome))
+                return c;
+        return null;
+    }
+    
+    public Cliente buscarCliente(int mesa) {
+        for(Cliente c : this.clientes)
+            if(c.getMesa() == mesa)
+                return c;
+        return null;
+    }
+
+// ver se eh possivel modificar o telefone para exemplificar esse tipo de polimorfismo
+//    public Cliente buscarCliente(String telefone) {
 //    }
 
 

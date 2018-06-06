@@ -7,17 +7,15 @@ import model.cliente.Cliente;
 public class Pedido {
     
     private final int numero;
-    private final ArrayList<Produto> listaProdutos;
+    private final ArrayList<Produto> listaProdutos;    
     private String nota;
     private Cliente cliente;
+    private boolean realizarEntrega;
     
-    public Pedido() {//Cliente cliente, Produto... produtos) {
+    public Pedido() {
         this.numero = GeradorNumPedido.getNumPedido();
         this.listaProdutos = new ArrayList<Produto>();
-//        
-//        for(Produto prod : produtos) {
-//            this.listaProdutos.add(prod);
-//        }
+        this.realizarEntrega = false;
     }
     
     public int getNumPedido() {
@@ -31,6 +29,18 @@ public class Pedido {
     public ArrayList<Produto> getProdutos() {
         return this.listaProdutos;
     }
+    
+    public boolean isRealizarEntrega() {
+        return realizarEntrega;
+    }
+    
+    public void setRealizarEntrega(boolean realizarEntrega) {
+        this.realizarEntrega = realizarEntrega;
+    }
+    
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }    
     
     public float getValorPedido() {
     
@@ -62,10 +72,7 @@ public class Pedido {
     
     //remove o(s) produto(s) do pedido
     public void removerProduto(Produto produto) {
-       
-      
-        this.listaProdutos.remove(produto);
-        
+        this.listaProdutos.remove(produto);        
     }
     
     public void finalizarPedido() {

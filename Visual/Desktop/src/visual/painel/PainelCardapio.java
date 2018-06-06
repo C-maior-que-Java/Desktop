@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package visual.painel;
 
 import java.util.ArrayList;
@@ -15,14 +15,14 @@ import model.produto.Produto;
 import visual.tela.TelaPrincipal;
 
 public class PainelCardapio extends javax.swing.JPanel {
-
+    
     private Cardapio cardapio;
     private TelaPrincipal telaPrincipal;
     
     public PainelCardapio(Cardapio cardapio, TelaPrincipal telaPrincipal){
-    	initComponents();
+        initComponents();
         this.cardapio = cardapio;
-	this.telaPrincipal = telaPrincipal;
+        this.telaPrincipal = telaPrincipal;
         
         refresh();
     }
@@ -36,19 +36,19 @@ public class PainelCardapio extends javax.swing.JPanel {
         while(modelPizza.getRowCount() > 0)
             modelPizza.removeRow(0);
         
-       while(modelBebida.getRowCount() > 0)
+        while(modelBebida.getRowCount() > 0)
             modelBebida.removeRow(0);
         
         for(Produto prod : cardapio.getProdutos()){
-           if(prod instanceof Pizza){             
-               modelPizza.addRow(new Object[]{prod.getID(), prod.getNome(), "não implementado", 
-               ((Pizza)prod).getPreco(Tamanho.PEQUENO), ((Pizza)prod).getPreco(Tamanho.MEDIO), ((Pizza)prod).getPreco(Tamanho.GRANDE)});
-           }
-           else if(prod instanceof Bebida)
-               modelBebida.addRow(new Object[]{prod.getID(), prod.getNome(), prod.getPreco()});
+            if(prod instanceof Pizza){
+                modelPizza.addRow(new Object[]{prod.getID(), prod.getNome(), "não implementado",
+                    ((Pizza)prod).getPreco(Tamanho.PEQUENO), ((Pizza)prod).getPreco(Tamanho.MEDIO), ((Pizza)prod).getPreco(Tamanho.GRANDE)});
+            }
+            else if(prod instanceof Bebida)
+                modelBebida.addRow(new Object[]{prod.getID(), prod.getNome(), prod.getPreco()});
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -180,7 +180,7 @@ public class PainelCardapio extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

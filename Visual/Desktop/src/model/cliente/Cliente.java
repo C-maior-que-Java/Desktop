@@ -6,6 +6,7 @@ public class Cliente {
     private String nome;
     private String telefone;
     private String endereco;
+    private int mesa;    
     
     // construtor
     public Cliente(String nome, String telefone, String endereco) {
@@ -13,6 +14,7 @@ public class Cliente {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.mesa = -1; // a principio o cliente ainda nao foi alocado a uma mesa
     }
     
     // getters
@@ -22,6 +24,10 @@ public class Cliente {
     
     public String getTelefone() {
         return this.telefone;
+    }
+    
+    public int getMesa() {
+        return mesa;
     }
     
     //setters
@@ -41,5 +47,7 @@ public class Cliente {
         this.endereco = endereco;
     }
     
-    
+    public void setMesa(int mesa) {
+        this.mesa = mesa;
+    }
 }

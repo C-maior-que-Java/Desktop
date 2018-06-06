@@ -1,10 +1,10 @@
 package visual.painel;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +17,7 @@ import visual.tela.TelaPrincipal;
  * @author ra197569
  */
 public class PainelEntregas extends javax.swing.JPanel {
-
+    
     private TelaPrincipal telaPrincipal;
     private DefaultTableModel entregaTableModel;
     
@@ -29,15 +29,27 @@ public class PainelEntregas extends javax.swing.JPanel {
         listarEntregas();
     }
     
-    
     public void listarEntregas() {
-        
         for (Entrega entrega : telaPrincipal.getEntregas()) {
-            
             telaPrincipal.adicionarEntregaNaLista(entrega);
         }
     }
-
+    
+    public void refresh() {
+        DefaultTableModel modelEntrega = (DefaultTableModel) jTableEntregas.getModel();
+        
+        while(modelEntrega.getRowCount() > 0)
+            modelEntrega.removeRow(0);
+        
+        for(Entrega entrega : telaPrincipal.getEntregas()) {
+            if(entrega.getCliente() != null)
+                modelEntrega.addRow(new Object[]{entrega.getPedido().getNumPedido(), entrega.getCliente().getNome(), entrega.getCliente().getEndereco(), "Enviado para entrega"});
+            else
+                modelEntrega.addRow(new Object[]{entrega.getPedido().getNumPedido(), "Não encontrado", "Não encontrado", "Enviado para entrega"});            
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -122,9 +134,9 @@ public class PainelEntregas extends javax.swing.JPanel {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) jTableEntregas.getModel();
         int selectIndice = jTableEntregas.getSelectedRow();
@@ -140,7 +152,7 @@ public class PainelEntregas extends javax.swing.JPanel {
             telaPrincipal.removerEntregaDaLista(selectIndice);
         }
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
