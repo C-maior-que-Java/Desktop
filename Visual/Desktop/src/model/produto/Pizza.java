@@ -76,8 +76,8 @@ public class Pizza extends Produto {
     // setters
     public void setTamanho(Tamanho t) {
         switch(t) {
-            case PEQUENO: tamanho = Tamanho.PEQUENO; break;
             case MEDIO  : tamanho = Tamanho.MEDIO; break;
+            case PEQUENO: tamanho = Tamanho.PEQUENO; break;
             case GRANDE : tamanho = Tamanho.GRANDE; break;
         }
     }
@@ -86,6 +86,18 @@ public class Pizza extends Produto {
     public String getNome(){
         String saida = "Pizza de " + sabor.getNome();
         return saida;
+    }
+    
+    @Override
+    public float getPreco(){
+        float preco = super.getPreco();
+        
+        switch(tamanho){
+            case MEDIO  : break;
+            case PEQUENO: preco *= 0.8;
+            case GRANDE : preco *= 1.3;
+        }
+        return preco;
     }
     
     //exibe todos os ingredientes da pizza
