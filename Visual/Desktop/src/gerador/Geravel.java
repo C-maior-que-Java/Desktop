@@ -5,10 +5,6 @@
  */
 package gerador;
 
-/**
- *
- * @author ra204481
- */
 public interface Geravel {
     public int gerarId();
 }
