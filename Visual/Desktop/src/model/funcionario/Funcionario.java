@@ -1,9 +1,9 @@
 package model.funcionario;
 
-public class Funcionario {
+public abstract class Funcionario {
     
-    private int ID;
-    private String nome;
+    protected int ID;
+    protected String nome;
     
     
     //m�todo construtor
@@ -18,9 +18,7 @@ public class Funcionario {
         this.nome = nome;
     }
     
-    public String getNome() {
-        return nome;
-    }
+    public abstract String getNome();
     
     public int getID() {
         return ID;

@@ -22,4 +22,9 @@ public class Administrador extends Funcionario {
     public void removerDoCardapio(Cardapio cardapio, Produto produto) {
         cardapio.removerDoCardapio(produto);
     }
+
+    @Override
+    public String getNome() {
+        return "Excelentíssimo " + this.nome;
+    }
 }

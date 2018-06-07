@@ -8,11 +8,12 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.produto.Bebida;
-import model.produto.GeradorIDProduto;
 import model.produto.Pizza;
 import model.produto.Pizza.Sabor;
 import model.produto.Pizza.Tamanho;
 import model.produto.PizzaDoisSabores;
+import model.produto.PizzaNormal;
+import model.produto.Produto;
 import visual.tela.TelaPrincipal;
 
 /**
@@ -285,33 +286,37 @@ public class PainelProdutos extends javax.swing.JPanel {
         // TODO add your handling code here:
         String nome = txtNome.getText();
         float preco = Float.valueOf(txtPreco.getText());
-        int id = GeradorIDProduto.getIDProduto();
+        int id;
         boolean bebida = this.rdBtnBebida.isSelected();
         boolean pizza = this.rdBtnPizza.isSelected();
         boolean sabor_unico = this.rdBtnSaborUnico.isSelected();
         boolean sabor_duplo = this.rdBtnSaborDuplo.isSelected();
         
+        Produto novo_produto;
+        
         if(bebida) {       
             
-            Bebida novo_produto = new Bebida(nome, preco, id, cbBebidas.getItemAt(cbBebidas.getSelectedIndex()));
+            novo_produto = new Bebida(nome, preco, cbBebidas.getItemAt(cbBebidas.getSelectedIndex()));
             telaPrincipal.adicionarProdutoNaLista(novo_produto);
+            
             
         } else if(pizza) {
             
-            Pizza novo_produto;
+            //novo_produto;
             
             if (sabor_unico) {                
-                novo_produto = new Pizza(nome,preco,GeradorIDProduto.getIDProduto(),Tamanho.MEDIO);
+                novo_produto = new PizzaNormal(nome,preco,Tamanho.MEDIO);
                 String ingredientes[] = {"Molho","Quejo"};
                 Pizza.Sabor sabor = new Sabor(cbSabores.getItemAt(cbSabores.getSelectedIndex()),ingredientes);
-                novo_produto.setSabor(sabor);
+                ((PizzaNormal)novo_produto).setSabor(sabor);
             }
             else{                
-                novo_produto = new PizzaDoisSabores(nome,preco,GeradorIDProduto.getIDProduto(),Pizza.Tamanho.MEDIO);
+                novo_produto = new PizzaDoisSabores(nome,preco,Pizza.Tamanho.MEDIO);
                 String ingredientes[] = {"Molho","Quejo"};
                 Pizza.Sabor sabor1, sabor2;
                 sabor1 = new Sabor(cbSaboresDuplo1.getItemAt(cbSaboresDuplo1.getSelectedIndex()),ingredientes);
-                novo_produto.setSabor(sabor1);
+                //novo_produto.setSabor(sabor1);
+                ((PizzaDoisSabores)novo_produto).setSabor(sabor1);
                 sabor2 = new Sabor(cbSaboresDuplo2.getItemAt(cbSaboresDuplo2.getSelectedIndex()), ingredientes);
                 ((PizzaDoisSabores)novo_produto).setSegundoSabor(sabor2);
             }
@@ -326,9 +331,9 @@ public class PainelProdutos extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
         if(pizza)
-            model.addRow(new Object[]{id,nome,preco,"Pizza"});
+            model.addRow(new Object[]{novo_produto.getID(),nome,preco,"Pizza"});
         else
-            model.addRow(new Object[]{id,nome,preco,"Bebida"});
+            model.addRow(new Object[]{novo_produto.getID(),nome,preco,"Bebida"});
         
         this.limparCampos();
     }//GEN-LAST:event_btnAdicionarActionPerformed

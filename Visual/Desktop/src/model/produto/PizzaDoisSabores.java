@@ -14,8 +14,8 @@ public class PizzaDoisSabores extends Pizza {
     
     private Sabor segundoSabor;
     
-    public PizzaDoisSabores(String nome, float preco, int ID, Tamanho t) {
-        super(nome, preco, ID, t);
+    public PizzaDoisSabores(String nome, float preco, Tamanho t) {
+        super(nome, preco, t);
     }
     
     @Override

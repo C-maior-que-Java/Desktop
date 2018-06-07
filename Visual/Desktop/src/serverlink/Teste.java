@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.produto.Pizza;
+import model.produto.Pizza.Tamanho;
+import model.produto.PizzaNormal;
 import model.produto.Produto;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -34,7 +37,7 @@ public class Teste {
             HttpPost httpPost = new HttpPost("http://localhost:8080/produto");
             
             Gson gson = new Gson();
-            Produto produto = new Produto("Arroz com feijao", 2.99f, 1); // perguntar pq tirou o nome
+            Produto produto = new PizzaNormal("Arroz com feijao", 2.99f, Tamanho.GRANDE); // perguntar pq tirou o nome
             String json = gson.toJson(produto);
             
             StringEntity entity = new StringEntity(json);

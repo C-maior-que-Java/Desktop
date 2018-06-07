@@ -42,7 +42,7 @@ public class PainelCardapio extends javax.swing.JPanel {
         for(Produto prod : cardapio.getProdutos()){
             if(prod instanceof Pizza){
                 modelPizza.addRow(new Object[]{prod.getID(), prod.getNome(), "não implementado",
-                    ((Pizza)prod).getPreco(Tamanho.PEQUENO), ((Pizza)prod).getPreco(Tamanho.MEDIO), ((Pizza)prod).getPreco(Tamanho.GRANDE)});
+                    ((Pizza)prod).getPrecoDeTamanho(Tamanho.PEQUENO), ((Pizza)prod).getPrecoDeTamanho(Tamanho.MEDIO), ((Pizza)prod).getPrecoDeTamanho(Tamanho.GRANDE)});
             }
             else if(prod instanceof Bebida)
                 modelBebida.addRow(new Object[]{prod.getID(), prod.getNome(), prod.getPreco()});

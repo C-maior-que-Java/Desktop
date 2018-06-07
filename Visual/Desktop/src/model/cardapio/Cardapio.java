@@ -3,7 +3,7 @@ package model.cardapio;
 import model.produto.Produto;
 import java.util.ArrayList;
 
-public class Cardapio{
+public class Cardapio {
     
     // o cardapio contem uma lista de Produtos
     private ArrayList<Produto> produtos;

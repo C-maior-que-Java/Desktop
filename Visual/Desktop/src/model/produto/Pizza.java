@@ -1,6 +1,6 @@
 package model.produto;
 
-public class Pizza extends Produto {
+public abstract class Pizza extends Produto {
     
     public static class Sabor {
         private String nome;    //deixar esses atributos final?
@@ -36,28 +36,28 @@ public class Pizza extends Produto {
     }
     
     // atributos
-    private Tamanho tamanho;
+    protected Tamanho tamanho;
     protected Sabor sabor;
     
     /*
         Sobrecarga do construtor da classe Pizza. Tamanho MEDIO default
     */    
-    public Pizza(String nome , float preco, int ID, Tamanho t) {
-        this(nome, preco, ID, t, null);
+    public Pizza(String nome , float preco, Tamanho t) {
+        this(nome, preco, t, null);
     }
     
     /*
         Sobrecarga do construtor da classe Pizza. Tamanho MEDIO default
     */
-    public Pizza(String nome , float preco, int ID) {
-        this(nome, preco, ID, Tamanho.MEDIO, null);
+    public Pizza(String nome , float preco) {
+        this(nome, preco, Tamanho.MEDIO, null);
     }
     
     /*
         Construtor da classe Pizza
     */
-    public Pizza(String nome , float preco, int ID, Tamanho t, Sabor sabor) {
-        super(nome, preco, ID);
+    public Pizza(String nome , float preco, Tamanho t, Sabor sabor) {
+        super(nome, preco);
         this.sabor = sabor;
         switch (t){
             case PEQUENO: tamanho = Tamanho.PEQUENO; break;
@@ -92,44 +92,28 @@ public class Pizza extends Produto {
     //Sobrescrita do método getPreco: retorna valor de acordo com o tamanho da pizza, preco padrao é o da pizza média
     @Override
     public float getPreco(){
-        float preco = super.getPreco();
         
         switch(tamanho){
             case MEDIO  : break;
-            case PEQUENO: preco *= 0.8;
-            case GRANDE : preco *= 1.3;
+            case PEQUENO: this.preco *= 0.8;
+            case GRANDE : this.preco *= 1.3;
         }
         return preco;
     }
     
-    //Sobrecarga do método GetPreco: retorna o valor dessa pizza para o tamanho fornecido
-    public float getPreco(Tamanho t){
-        float preco = super.getPreco();
+    public float getPrecoDeTamanho(Tamanho t){
         
         switch(t){
             case MEDIO  : break;
-            case PEQUENO: preco *= 0.8;
-            case GRANDE : preco *= 1.3;
+            case PEQUENO: this.preco *= 0.8;
+            case GRANDE : this.preco *= 1.3;
         }
         return preco;
     }
     
     //exibe todos os ingredientes da pizza
-    public String verIngredientes() {
-        String saida = "";
-        
-        if(sabor.ingredientes.length == 0){
-            return null;
-        }
-        
-        for(int i = 0; i < sabor.ingredientes.length; i++) {
-            
-            saida = saida + sabor.ingredientes[i];
-            if(i != sabor.ingredientes.length -1) {
-                saida = saida + ", ";
-            }
-        }
-        return saida;
-    }
+
+    
+    public abstract String verIngredientes();
     
 }

@@ -1,10 +1,13 @@
 package model.pedido;
 
+import gerador.Geravel;
 import model.produto.Produto;
 import java.util.ArrayList;
 import model.cliente.Cliente;
 
-public class Pedido {
+public class Pedido implements Geravel{
+    
+    private static int num = 0;
     
     private final int numero;
     private final ArrayList<Produto> listaProdutos;    
@@ -13,7 +16,8 @@ public class Pedido {
     private boolean realizarEntrega;
     
     public Pedido() {
-        this.numero = GeradorNumPedido.getNumPedido();
+        //this.numero = GeradorNumPedido.getNumPedido();
+        this.numero = gerarId();
         this.listaProdutos = new ArrayList<Produto>();
         this.realizarEntrega = false;
     }
@@ -73,11 +77,11 @@ public class Pedido {
     //remove o(s) produto(s) do pedido
     public void removerProduto(Produto produto) {
         this.listaProdutos.remove(produto);        
+    }    
+
+    @Override
+    public int gerarId() {
+        num += 1;
+        return num;
     }
-    
-    public void finalizarPedido() {
-        //enviar o pedido para algum arrayList
-        //atendente deve ter acesso a esse arrayList
-    }
-    
 }

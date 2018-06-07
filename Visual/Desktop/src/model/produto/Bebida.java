@@ -6,8 +6,8 @@ public class Bebida extends Produto {
     private String tipo;
     
     // construtor
-    public Bebida(String nome, float preco, int ID, String tipo) {
-        super(nome,preco, ID);
+    public Bebida(String nome, float preco, String tipo) {
+        super(nome,preco);
         this.tipo = tipo;
     }
     
@@ -21,5 +21,15 @@ public class Bebida extends Produto {
     public void setTipo(String tipo) {
         
         this.tipo = tipo;
+    }
+
+    @Override
+    public float getPreco() {
+        return this.preco;
+    }
+
+    @Override
+    public String getNome() {
+        return this.nome + " - " + this.tipo;
     }
 }

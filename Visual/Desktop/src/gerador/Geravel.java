@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.produto;
+package gerador;
 
 /**
  *
  * @author ra204481
  */
-public class GeradorIDProduto {
-     
-    private static int id = 0;
-    
-    public static int getIDProduto() {
-        id += 1;
-        return id;
-    }
-
+public interface Geravel {
+    public int gerarId();
 }
