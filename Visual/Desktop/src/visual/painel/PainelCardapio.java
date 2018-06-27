@@ -5,7 +5,6 @@
 */
 package visual.painel;
 
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.cardapio.Cardapio;
 import model.produto.Bebida;
@@ -42,10 +41,10 @@ public class PainelCardapio extends javax.swing.JPanel {
         for(Produto prod : cardapio.getProdutos()){
             if(prod instanceof Pizza){
                 modelPizza.addRow(new Object[]{prod.getID(), prod.getNome(), "não implementado",
-                    ((Pizza)prod).getPrecoDeTamanho(Tamanho.PEQUENO), ((Pizza)prod).getPrecoDeTamanho(Tamanho.MEDIO), ((Pizza)prod).getPrecoDeTamanho(Tamanho.GRANDE)});
+                    TelaPrincipal.df.format(((Pizza)prod).getPrecoDeTamanho(Tamanho.PEQUENO)), TelaPrincipal.df.format(((Pizza)prod).getPrecoDeTamanho(Tamanho.MEDIO)), TelaPrincipal.df.format(((Pizza)prod).getPrecoDeTamanho(Tamanho.GRANDE))});
             }
             else if(prod instanceof Bebida)
-                modelBebida.addRow(new Object[]{prod.getID(), prod.getNome(), prod.getPreco()});
+                modelBebida.addRow(new Object[]{prod.getID(), prod.getNome(), TelaPrincipal.df.format(prod.getPreco())});
         }
     }
     
@@ -75,7 +74,7 @@ public class PainelCardapio extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -128,7 +127,7 @@ public class PainelCardapio extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false

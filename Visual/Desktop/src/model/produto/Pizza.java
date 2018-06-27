@@ -93,11 +93,11 @@ public abstract class Pizza extends Produto {
     @Override
     public float getPreco(){
         
-        switch(tamanho){
-            case MEDIO  : break;
-            case PEQUENO: this.preco *= 0.8;
-            case GRANDE : this.preco *= 1.3;
-        }
+//        switch(tamanho){
+//            case MEDIO  : break;
+//            case PEQUENO: this.preco *= 0.8;
+//            case GRANDE : this.preco *= 1.3;
+//        }
         return preco;
     }
     
@@ -105,8 +105,8 @@ public abstract class Pizza extends Produto {
         
         switch(t){
             case MEDIO  : break;
-            case PEQUENO: this.preco *= 0.8;
-            case GRANDE : this.preco *= 1.3;
+            case PEQUENO: return this.preco * 0.8f;
+            case GRANDE : return this.preco * 1.3f;
         }
         return preco;
     }

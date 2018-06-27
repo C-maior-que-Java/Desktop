@@ -1,17 +1,14 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package visual.painel;
+
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 import model.cliente.Cliente;
 import visual.tela.TelaPrincipal;
-/**
- *
- * @author ra197569
- */
+
 public class PainelCliente extends javax.swing.JPanel {
     
     private TelaPrincipal telaPrincipal;
@@ -22,6 +19,13 @@ public class PainelCliente extends javax.swing.JPanel {
     public PainelCliente(TelaPrincipal telaPrincipal) {
         initComponents();
         this.telaPrincipal = telaPrincipal;
+        
+        try { 
+            MaskFormatter maskData = new MaskFormatter("(##)#####-####");
+            maskData.install(this.txtTelefone);
+        } catch (ParseException ex) {
+            Logger.getLogger(PainelCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -37,7 +41,6 @@ public class PainelCliente extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtTelefone = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JTextField();
         btnAdicionarCliente = new javax.swing.JButton();
@@ -46,6 +49,7 @@ public class PainelCliente extends javax.swing.JPanel {
         btnRemoverCliente = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txtNumeroMesa = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("Nome");
 
@@ -111,14 +115,14 @@ public class PainelCliente extends javax.swing.JPanel {
                             .addComponent(jLabel4))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtNome)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtNumeroMesa)
                                 .addGap(675, 675, 675))
-                            .addComponent(txtEndereco)))
+                            .addComponent(txtEndereco)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -133,7 +137,7 @@ public class PainelCliente extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,10 +172,34 @@ public class PainelCliente extends javax.swing.JPanel {
     private void btnAdicionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarClienteActionPerformed
         String nome = txtNome.getText();
         String telefone = txtTelefone.getText();
+        telefone = telefone.replace("(", "");
+        telefone = telefone.replace(")", "");
+        telefone = telefone.replace("-", "");
+        telefone = telefone.replace(" ", "");
         String endereco = txtEndereco.getText();
         
+        if(nome.equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Nome' vazio !");
+            return;
+        }
+        
+        if(telefone.equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Telefone' vazio !");
+            return;
+        }
+        
+        if(endereco.equals("")) {
+            JOptionPane.showMessageDialog(null, "Campo 'Endereço' vazio !");
+            return;
+        }
+        
         Cliente novo_cliente = new Cliente(nome,telefone,endereco);
-        novo_cliente.setMesa(Integer.valueOf(txtNumeroMesa.getText()));
+        try {
+            novo_cliente.setMesa(Integer.valueOf(txtNumeroMesa.getText()));
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Valor do campo mesa deve ser um número !");
+            return;
+        }
         telaPrincipal.adicionarClienteNaLista(novo_cliente);
         
         DefaultTableModel model = (DefaultTableModel) jTabelaClientes.getModel();
@@ -198,6 +226,7 @@ public class PainelCliente extends javax.swing.JPanel {
         this.txtNome.setText("");
         this.txtEndereco.setText("");
         this.txtTelefone.setText("");
+        this.txtNumeroMesa.setText("");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -213,6 +242,6 @@ public class PainelCliente extends javax.swing.JPanel {
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumeroMesa;
-    private javax.swing.JTextField txtTelefone;
+    private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 */
 package visual.tela;
 
+import java.text.DecimalFormat;
 import visual.painel.PainelCliente;
 import visual.painel.PainelProdutos;
 import visual.painel.PainelPedidos;
@@ -27,6 +28,8 @@ import model.cardapio.Cardapio;
  * @author pedro
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    
+    public static final DecimalFormat df = new DecimalFormat("R$ #,##0.00");
 
     private Funcionario funcionarioSessaoAtual;
 
@@ -107,6 +110,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 this.entregas.add(new Entrega("Nao encontrado", pedido, null, 1)); // bastante informacao redundante na classe Entrega -> melhorar isso
         }
         ((PainelEntregas)painelEntregas).refresh(); // fazer a mesma coisa que o painel de produto faz para 
+        ((PainelPedidos)painelPedidos).refresh(); // atualizar com os pedidos ja feitos
     }
 
     public void adicionarEntregaNaLista(Entrega entrega) {

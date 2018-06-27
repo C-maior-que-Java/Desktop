@@ -7,13 +7,13 @@ package visual.tela;
 
 import visual.tela.TelaPrincipal;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.cardapio.Cardapio;
 import model.produto.Produto;
 import model.pedido.Pedido;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import java.text.DecimalFormat;
 import model.cliente.Cliente;
 
 
@@ -25,17 +25,13 @@ public class TelaFazerPedido extends javax.swing.JFrame {
 
     /**
      * Creates new form FazerPedido
-     */
-    
+     */    
     
     private ArrayList<Produto> produtosNoCardapio;
     private Pedido pedido;
     private TelaPrincipal telaPrincipal;
     private DefaultTableModel cardapioTableModel;
     private DefaultTableModel pedidoTableModel;
-
-    
-    private static final DecimalFormat df = new DecimalFormat("R$ #,##0.00");
         
     public TelaFazerPedido(TelaPrincipal telaPrincipal) {
         initComponents();
@@ -67,7 +63,7 @@ public class TelaFazerPedido extends javax.swing.JFrame {
         public void tableChanged(TableModelEvent e) {
             if (e.getType()==TableModelEvent.INSERT||e.getType()==TableModelEvent.DELETE) {
                 
-                jLabel6.setText(df.format(pedido.getValorPedido()));
+                jLabel6.setText(TelaPrincipal.df.format(pedido.getValorPedido()));
             }
         }
     });
@@ -75,7 +71,7 @@ public class TelaFazerPedido extends javax.swing.JFrame {
 
     private void adicionarLinhaTabela(Produto produto, DefaultTableModel model) {
   
-        model.addRow(new Object[]{String.valueOf(produto.getID()), df.format(produto.getPreco())});
+        model.addRow(new Object[]{String.valueOf(produto.getNome()), TelaPrincipal.df.format(produto.getPreco())});
         
     }
     /**
@@ -277,11 +273,18 @@ public class TelaFazerPedido extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        if(pedido.getProdutos().size() == 0) {
+            JOptionPane.showMessageDialog(null, "Nenhum produto selecionada para este pedido!");
+            return;
+        }
+        
         Cliente c = telaPrincipal.buscarCliente(txtNomeCliente.getText());
         pedido.setCliente(c);
         if(cbxGerarEntrega.isSelected())
             pedido.setRealizarEntrega(true);
         telaPrincipal.adicionarPedidoNaLista(pedido);
+        JOptionPane.showMessageDialog(null, "Pedido realizado com sucesso!");
         this.dispose();
         
     }//GEN-LAST:event_jButton3ActionPerformed

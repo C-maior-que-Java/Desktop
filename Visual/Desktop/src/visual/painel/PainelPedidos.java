@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package visual.painel;
 
 import javax.swing.table.DefaultTableModel;
@@ -18,38 +18,21 @@ import visual.tela.TelaPrincipal;
  * @author pedro
  */
 public class PainelPedidos extends javax.swing.JPanel {
-
+    
     private TelaPrincipal telaPrincipal;
     private DefaultTableModel pedidoTableModel;
     private ArrayList<Pedido> pedidos;
     private static final DecimalFormat df = new DecimalFormat("R$ #,##0.00");
-
+    
     /**
      * Creates new form PainelPedidos
      */
     public PainelPedidos(TelaPrincipal telaPrincipal) {
         initComponents();
-
         this.telaPrincipal = telaPrincipal;
-        pedidoTableModel = (DefaultTableModel) jTable1.getModel();
-
-
-        //Pedido pedido1 = new Pedido();
-       // telaPrincipal.adicionarPedidoNaLista(pedido1);
-
-        //this.pedidos = telaPrincipal.getPedidos();
-
-
-
-
-//        for(Pedido pedido : telaPrincipal.getPedidos()) {
-//
-//            adicionarLinhaTabela(pedido);
-//        }
+        pedidoTableModel = (DefaultTableModel) tabelaDePedidos.getModel();
     }
-
-
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,20 +43,28 @@ public class PainelPedidos extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaDePedidos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaDePedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Pedido", "Preço"
+                "Pedido", "Cliente", "Total do pedido"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaDePedidos);
 
         jButton1.setText("Novo Pedido");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -118,45 +109,60 @@ public class PainelPedidos extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         TelaFazerPedido telaFazerPedido = new TelaFazerPedido(this.telaPrincipal);
         telaFazerPedido.setVisible(true);
-
+        
         //telaPrincipal.adionarPedidoNaLista(null);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-
-        this.pedidos = telaPrincipal.getPedidos();
-
-        for(int i = 0; i < pedidoTableModel.getRowCount(); i++) {
         
+        
+        this.pedidos = telaPrincipal.getPedidos();
+        
+        for(int i = 0; i < pedidoTableModel.getRowCount(); i++) {
+            
             pedidoTableModel.removeRow(i);
         }
         
         for(Pedido pedido : pedidos) {
-
+            
             adicionarLinhaTabela(pedido);
-
-  
-       
+            
+            
+            
         }
         }//GEN-LAST:event_jButton2ActionPerformed
-
-
+    
+    
     private void adicionarLinhaTabela(Pedido pedido) {
-
         pedidoTableModel.addRow(new Object[]{String.valueOf(pedido.getNumPedido()), df.format(pedido.getValorPedido())});
-
     }
-
+    
+    public void refresh() {
+        DefaultTableModel modelEntrega = (DefaultTableModel) tabelaDePedidos.getModel();
+        
+        while(modelEntrega.getRowCount() > 0)
+            modelEntrega.removeRow(0);
+        
+        for(Pedido pedido : telaPrincipal.getPedidos()) {
+            
+            String infoPedido = "Pedido nº " + pedido.getNumPedido();
+            
+            if(pedido.getCliente() != null)
+                modelEntrega.addRow(new Object[]{infoPedido, pedido.getCliente().getNome(), TelaPrincipal.df.format(pedido.getValorPedido())});
+            else
+                modelEntrega.addRow(new Object[]{infoPedido, "desconhecido", TelaPrincipal.df.format(pedido.getValorPedido())});
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tabelaDePedidos;
     // End of variables declaration//GEN-END:variables
 }
