@@ -84,7 +84,7 @@ public abstract class Pizza extends Produto {
     
     @Override
     public String getNome(){
-        String saida = "Pizza de " + sabor.getNome();
+        String saida = this.nome + " - Pizza de " + sabor.getNome();
         return saida;
     }
     

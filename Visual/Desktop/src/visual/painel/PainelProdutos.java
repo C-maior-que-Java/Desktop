@@ -357,9 +357,9 @@ public class PainelProdutos extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) jTableProdutos.getModel();
         if(pizza)
-            model.addRow(new Object[]{novo_produto.getID(),nome,TelaPrincipal.df.format(preco),"Pizza"});
+            model.addRow(new Object[]{novo_produto.getID(), ((Pizza)novo_produto).getNome(), TelaPrincipal.df.format(preco),"Pizza"});
         else
-            model.addRow(new Object[]{novo_produto.getID(),nome,TelaPrincipal.df.format(preco),"Bebida"});
+            model.addRow(new Object[]{novo_produto.getID(), nome, TelaPrincipal.df.format(preco),"Bebida"});
         
         this.limparCampos();
     }//GEN-LAST:event_btnAdicionarActionPerformed

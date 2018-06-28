@@ -33,7 +33,8 @@ public class PizzaDoisSabores extends Pizza {
     @Override
     public String getNome(){
         String saida;
-        saida = "Pizza meia " + getSabor().getNome();
+        saida = this.nome;
+        saida += " - Pizza meia " + getSabor().getNome();
         saida += " meia " + getSegundoSabor().getNome();
         return saida;
     }
