@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package visual.tela;
 
-import visual.tela.TelaPrincipal;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,11 +10,6 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import model.cliente.Cliente;
 
-
-/**
- *
- * @author joaohergert
- */
 public class TelaFazerPedido extends javax.swing.JFrame {
 
     /**

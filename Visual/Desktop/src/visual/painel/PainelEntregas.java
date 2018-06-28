@@ -1,21 +1,10 @@
 package visual.painel;
 
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.entrega.Entrega;
 import visual.tela.TelaPrincipal;
-import visual.tela.TelaPrincipal;
 
-/**
- *
- * @author ra197569
- */
 public class PainelEntregas extends javax.swing.JPanel {
     
     private TelaPrincipal telaPrincipal;

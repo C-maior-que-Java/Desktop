@@ -6,7 +6,7 @@ public abstract class Funcionario {
     protected String nome;
     
     
-    //m�todo construtor
+    //metodo construtor
     public Funcionario(int ID, String nome) {
         this.ID = ID;
         this.nome = nome;

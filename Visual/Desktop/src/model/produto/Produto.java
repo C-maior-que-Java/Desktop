@@ -27,10 +27,6 @@ public abstract class Produto implements Geravel{
         return ID;
     }
     
-//    public void setID(int id){
-//        ID = id;
-//    }
-    
     public String getinfo(){
         return null;
     }
@@ -46,6 +42,4 @@ public abstract class Produto implements Geravel{
         id += 1;
         return id;
     }
-    
-    
 }

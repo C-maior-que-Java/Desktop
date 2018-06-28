@@ -1,4 +1,3 @@
-
 package model.busca;
 
 import java.util.ArrayList;
@@ -9,10 +8,6 @@ import model.produto.Pizza;
 import model.produto.PizzaDoisSabores;
 import model.produto.Produto;
 
-/**
- *
- * @author Matheus
- */
 public class Search {
     
     /*  Nessa classe estão funções estáticas responsáveis pela busca de objetos

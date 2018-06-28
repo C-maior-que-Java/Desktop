@@ -88,16 +88,8 @@ public abstract class Pizza extends Produto {
         return saida;
     }
     
-    
-    //Sobrescrita do método getPreco: retorna valor de acordo com o tamanho da pizza, preco padrao é o da pizza média
     @Override
     public float getPreco(){
-        
-//        switch(tamanho){
-//            case MEDIO  : break;
-//            case PEQUENO: this.preco *= 0.8;
-//            case GRANDE : this.preco *= 1.3;
-//        }
         return preco;
     }
     
@@ -111,9 +103,7 @@ public abstract class Pizza extends Produto {
         return preco;
     }
     
-    //exibe todos os ingredientes da pizza
-
-    
+    //exibe todos os ingredientes da pizza    
     public abstract String verIngredientes();
     
 }

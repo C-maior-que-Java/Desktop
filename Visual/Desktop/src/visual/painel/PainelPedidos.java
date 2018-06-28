@@ -1,8 +1,3 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package visual.painel;
 
 import javax.swing.table.DefaultTableModel;
@@ -12,11 +7,6 @@ import java.text.DecimalFormat;
 import visual.tela.TelaFazerPedido;
 import visual.tela.TelaPrincipal;
 
-
-/**
- *
- * @author pedro
- */
 public class PainelPedidos extends javax.swing.JPanel {
     
     private TelaPrincipal telaPrincipal;

@@ -1,8 +1,3 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package visual.painel;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -20,14 +15,10 @@ import model.produto.PizzaNormal;
 import model.produto.Produto;
 import visual.tela.TelaPrincipal;
 
-/**
- *
- * @author pedro
- */
 public class PainelProdutos extends javax.swing.JPanel {
     
-    private TelaPrincipal telaPrincipal; //Referencia da tela principal para a classe de Painel Produtos
-    //private NumberFormat format;
+    //Referencia da tela principal para a classe de Painel Produtos
+    private TelaPrincipal telaPrincipal;
     
     public PainelProdutos(TelaPrincipal telaPrincipal) {
         initComponents();

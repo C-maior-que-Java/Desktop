@@ -1,8 +1,3 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package visual.tela;
 
 import java.text.DecimalFormat;
@@ -23,10 +18,6 @@ import model.pedido.Pedido;
 import model.produto.Produto;
 import model.cardapio.Cardapio;
 
-/**
- *
- * @author pedro
- */
 public class TelaPrincipal extends javax.swing.JFrame {
     
     public static final DecimalFormat df = new DecimalFormat("R$ #,##0.00");

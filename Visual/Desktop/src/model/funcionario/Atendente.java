@@ -16,7 +16,7 @@ public class Atendente extends Funcionario {
     }
     
     
-    /*Deve modificar um pedido j� finalizado por um cliente
+    /*Deve modificar um pedido ja finalizado por um cliente
     *
     */
     public boolean alterarPedido(int ID) {

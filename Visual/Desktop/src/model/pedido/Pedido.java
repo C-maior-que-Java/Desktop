@@ -47,25 +47,18 @@ public class Pedido implements Geravel{
     }    
     
     public float getValorPedido() {
-    
         float valor = 0;
-        
-        
         if(listaProdutos.size() > 0) {
-        
             for(Produto produto : listaProdutos) {
                 valor += produto.getPreco();
             }
         }
-        
         return valor;
     }
     
     //adiciona ao pedido a quantidade do produto especificado
     public void adicionarProduto(Produto produto) {
-        
         this.listaProdutos.add(produto);
-
     }
     
     
